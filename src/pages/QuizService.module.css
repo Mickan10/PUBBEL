@@ -1,0 +1,257 @@
+/* ══════════════════════════════════════
+   WRAPPER
+══════════════════════════════════════ */
+.wrapper {
+  min-height: calc(100vh - 64px);
+  background: #0a0a0a;
+}
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero {
+  background: #111;
+  border-bottom: 3px solid var(--yellow);
+  padding: 5rem 3rem 4rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.heroTag {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  border: 2px solid var(--yellow);
+  padding: 0.2rem 0.7rem;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.9;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 span {
+  color: var(--yellow);
+}
+
+.heroLead {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #888;
+  max-width: 560px;
+  line-height: 1.65;
+  margin-bottom: 2.5rem;
+}
+
+.heroBtn {
+  display: inline-block;
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--yellow);
+  color: #111;
+  padding: 0.85rem 2.5rem;
+  transition: filter 0.15s, transform 0.1s;
+}
+.heroBtn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+}
+
+/* ══════════════════════════════════════
+   SECTIONS
+══════════════════════════════════════ */
+.section {
+  padding: 4rem 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  color: #444;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════
+   OCCASION GRID
+══════════════════════════════════════ */
+.occasionGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+
+.occasionCard {
+  background: #111;
+  border-top: 4px solid var(--c);
+  padding: 1.5rem 1.25rem;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.occasionCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.occasionCard h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.06em;
+  color: var(--c);
+  margin-bottom: 0.5rem;
+}
+
+.occasionCard p {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ══════════════════════════════════════
+   PRODUCT GRID
+══════════════════════════════════════ */
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.productCard {
+  background: #111;
+  border: 2px solid #1a1a1a;
+  overflow: hidden;
+}
+
+.productHeader {
+  padding: 1.5rem 1.5rem 1.25rem;
+}
+
+.productHeader h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+}
+
+.productTag {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.productPrice {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.04em;
+  display: block;
+  margin-top: 0.5rem;
+  opacity: 0.9;
+}
+
+.productBody {
+  padding: 1.5rem;
+}
+
+.productBody p {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #777;
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.featureList li {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #999;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.featureList li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: #444;
+}
+
+/* ══════════════════════════════════════
+   CTA
+══════════════════════════════════════ */
+.cta {
+  background: #111;
+  border-top: 3px solid #1a1a1a;
+  padding: 5rem 3rem;
+  text-align: center;
+}
+
+.cta h2 {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2rem, 5vw, 4rem);
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.cta p {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.ctaBtn {
+  display: inline-block;
+  font-family: 'Anton', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 2px solid var(--pink);
+  color: var(--pink);
+  padding: 0.85rem 2.5rem;
+  transition: background 0.15s, color 0.15s;
+}
+.ctaBtn:hover {
+  background: var(--pink);
+  color: #fff;
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 700px) {
+  .hero { padding: 3rem 1.5rem; }
+  .section { padding: 3rem 1.5rem; }
+  .occasionGrid { grid-template-columns: repeat(2, 1fr); }
+  .productGrid { grid-template-columns: 1fr; }
+  .cta { padding: 3rem 1.5rem; }
+}
+
+@media (max-width: 420px) {
+  .occasionGrid { grid-template-columns: 1fr; }
+}

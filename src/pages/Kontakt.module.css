@@ -1,0 +1,123 @@
+.wrapper {
+  min-height: calc(100vh - 64px);
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  padding: 4rem 2rem;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 960px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.info h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  color: var(--white);
+  line-height: 0.95;
+  margin-bottom: 1.25rem;
+}
+
+.info h1 span { color: var(--pink); }
+
+.info p {
+  color: #888;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contactList li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--white);
+}
+
+.contactList span { font-size: 1.3rem; }
+
+/* Form */
+.formWrap {
+  background: #111;
+  border: 2px solid #222;
+  padding: 2.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+}
+
+.form input,
+.form textarea {
+  padding: 0.75rem 1rem;
+  border: 2px solid #333;
+  background: #0a0a0a;
+  color: var(--white);
+  font-family: 'Nunito', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.15s;
+  resize: vertical;
+  outline: none;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: var(--pink);
+}
+
+.btnPrimary {
+  background: var(--pink);
+  color: var(--white);
+  border: none;
+  font-family: 'Anton', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.9rem 2rem;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 0.5rem;
+}
+
+.btnPrimary:hover { background: #e0005f; }
+
+.thankYou {
+  text-align: center;
+  padding: 2rem 0;
+}
+.thankYou span { font-size: 3.5rem; display: block; margin-bottom: 1rem; }
+.thankYou h2 {
+  font-size: 2.5rem;
+  color: var(--yellow);
+  margin-bottom: 0.5rem;
+}
+.thankYou p { color: #888; }
+
+@media (max-width: 768px) {
+  .inner { grid-template-columns: 1fr; gap: 2rem; }
+}

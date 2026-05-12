@@ -1,0 +1,387 @@
+.wrapper {
+  min-height: calc(100vh - 64px);
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 1rem 3rem;
+}
+
+/* ══ SETUP / FINISHED CARD ══ */
+.setupCard {
+  background: #111;
+  border: 2px solid #1a1a1a;
+  width: 100%;
+  max-width: 520px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  animation: slideUp 0.25s ease;
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.badge {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  display: inline-block;
+  align-self: flex-start;
+  background: #222;
+  color: #888;
+}
+
+.setupTitle {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: #fff;
+  line-height: 0.9;
+  margin: 0;
+}
+.setupDesc {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ══ TEAM SETUP ══ */
+.teamSection { display: flex; flex-direction: column; gap: 0.5rem; }
+.teamLabel {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: #555;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+.teamRow { display: flex; gap: 0.5rem; align-items: center; }
+.teamInput {
+  flex: 1;
+  background: #191919;
+  border: 2px solid #2a2a2a;
+  color: #fff;
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  padding: 0.6rem 0.75rem;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.teamInput:focus { border-color: var(--accent); }
+.removeBtn {
+  background: none;
+  border: 2px solid #2a2a2a;
+  color: #555;
+  width: 2rem;
+  height: 2.35rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.removeBtn:hover { border-color: #ef4444; color: #ef4444; }
+
+.addTeamBtn {
+  background: none;
+  border: 2px dashed #2a2a2a;
+  color: #555;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.6rem;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+  margin-top: 0.25rem;
+}
+.addTeamBtn:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ══ BUTTONS ══ */
+.btnStart {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  padding: 0.9rem 2rem;
+  cursor: pointer;
+  transition: filter 0.15s, transform 0.1s;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+.btnStart:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+.btnBack {
+  display: block;
+  text-align: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #555;
+  padding: 0.6rem;
+  border: 2px solid #1a1a1a;
+  transition: color 0.15s, border-color 0.15s;
+}
+.btnBack:hover { color: #fff; border-color: #444; }
+
+/* ══ SCORE BAR ══ */
+.scoreBar {
+  width: 100%;
+  max-width: 960px;
+  display: flex;
+  gap: 4px;
+  margin-bottom: 6px;
+  align-items: stretch;
+}
+.scoreTeam {
+  flex: 1;
+  background: #111;
+  border: 2px solid #1a1a1a;
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+.scoreName {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #666;
+}
+.scorePoints {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.scoreRemaining {
+  background: #111;
+  border: 2px solid #1a1a1a;
+  padding: 0.6rem 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: #444;
+  white-space: nowrap;
+}
+
+/* ══ BOARD ══ */
+.board {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  gap: 4px;
+}
+.categoryHeader {
+  background: var(--accent);
+  color: var(--accent-text);
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(0.6rem, 1.5vw, 0.85rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 0.75rem 0.25rem;
+  line-height: 1.2;
+}
+.cell {
+  background: #111;
+  border: 2px solid #1a1a1a;
+  color: var(--accent);
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s, transform 0.1s;
+  aspect-ratio: 1.4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cell:hover:not(:disabled) {
+  background: #1a1a1a;
+  border-color: var(--accent);
+  transform: scale(1.03);
+}
+.cellUsed {
+  color: #2a2a2a !important;
+  background: #0d0d0d !important;
+  border-color: #141414 !important;
+  cursor: default;
+}
+
+/* ══ CLUE OVERLAY ══ */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.clueCard {
+  background: #111;
+  border: 3px solid var(--accent);
+  width: 100%;
+  max-width: 560px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  animation: slideUp 0.2s ease;
+}
+.clueHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.clueCategory {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #666;
+}
+.cluePoints {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+}
+.clueText {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.4;
+  text-align: center;
+  padding: 1rem 0;
+  margin: 0;
+}
+.correctAnswer {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #22c55e;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.2);
+  padding: 0.75rem 1rem;
+  text-align: center;
+  margin: 0;
+  animation: fadeIn 0.2s ease;
+}
+.revealBtn {
+  background: none;
+  border: 2px solid var(--accent);
+  color: var(--accent);
+  font-family: 'Anton', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.5rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  align-self: center;
+}
+.revealBtn:hover { background: var(--accent); color: var(--accent-text); }
+
+.clueActions { display: flex; flex-direction: column; gap: 0.6rem; }
+.clueActionsLabel {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.16em;
+  color: #555;
+  text-align: center;
+}
+.teamButtons { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+.teamBtn {
+  background: none;
+  border: 2px solid #2a2a2a;
+  color: #aaa;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: border-color 0.12s, background 0.12s, color 0.12s;
+  flex: 1;
+  min-width: 100px;
+}
+.teamBtn:hover {
+  border-color: var(--tc, var(--accent));
+  background: rgba(255,255,255,0.05);
+  color: #fff;
+}
+.nobodyBtn {
+  background: none;
+  border: 2px solid #222;
+  color: #444;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.6rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.nobodyBtn:hover { color: #888; border-color: #444; }
+
+/* ══ FINISHED ══ */
+.winnerLine {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #888;
+  text-align: center;
+}
+
+.funnyLine {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--accent);
+  text-align: center;
+  border: 2px solid #1f1f1f;
+  padding: 0.9rem 1rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+.finalScores { display: flex; flex-direction: column; gap: 4px; }
+.finalRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #191919;
+  border: 2px solid #222;
+  padding: 0.75rem 1rem;
+}
+.finalRowWinner { border-color: var(--accent); background: #1a1a1a; }
+.finalRank { font-family: 'Anton', sans-serif; color: #555; min-width: 1.5rem; }
+.finalName { font-family: 'Anton', sans-serif; color: #fff; flex: 1; font-size: 1rem; letter-spacing: 0.06em; }
+.finalScore { font-family: 'Anton', sans-serif; font-size: 1.2rem; color: #888; }
+
+/* ══ RESPONSIVE ══ */
+@media (max-width: 600px) {
+  .cell { padding: 0.75rem 0.25rem; font-size: 1rem; aspect-ratio: 1; }
+  .categoryHeader { font-size: 0.55rem; padding: 0.5rem 0.15rem; }
+  .clueCard { padding: 1.25rem 1rem; }
+}

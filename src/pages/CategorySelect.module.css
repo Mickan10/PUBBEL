@@ -1,0 +1,138 @@
+.wrapper {
+  min-height: calc(100vh - 64px);
+  background: #0a0a0a;
+}
+
+/* ── HERO ── */
+.hero {
+  background: #111;
+  border-bottom: 4px solid var(--accent);
+  padding: 3rem 2rem 2.5rem;
+  position: relative;
+}
+.heroEmoji {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+.heroTitle {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  color: var(--accent);
+  line-height: 0.9;
+  margin-bottom: 0.5rem;
+}
+.heroSub {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #555;
+}
+
+/* ── BACK LINK ── */
+.back {
+  display: inline-block;
+  font-family: 'Anton', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 1.5rem;
+  transition: color 0.15s;
+}
+.back:hover { color: #fff; }
+
+/* ── PACK LIST ── */
+.packList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.packCard {
+  background: #111;
+  border: 2px solid #1a1a1a;
+  padding: 1.75rem 1.5rem;
+  display: block;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.packCard:hover {
+  border-color: var(--accent);
+  transform: translateX(6px);
+  box-shadow: -4px 0 0 var(--accent);
+}
+
+.packTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.typeBadge {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  background: #2a2a2a;
+  color: #888;
+  padding: 0.2rem 0.6rem;
+}
+
+.packArrow {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.1rem;
+  color: #333;
+  transition: color 0.15s, transform 0.15s;
+}
+.packCard:hover .packArrow {
+  color: var(--accent);
+  transform: translateX(4px);
+}
+
+.packTitle {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  color: #fff;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.4rem;
+}
+
+.packDesc {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+}
+
+.packMeta {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+/* ── NOT FOUND ── */
+.notFound {
+  padding: 4rem 2rem;
+  text-align: center;
+}
+.notFound h1 {
+  font-family: 'Anton', sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 640px) {
+  .hero { padding: 2rem 1.25rem 1.5rem; }
+  .packCard { padding: 1.25rem 1rem; }
+}

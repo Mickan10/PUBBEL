@@ -1,0 +1,110 @@
+.wrapper {
+  min-height: calc(100vh - 64px);
+  background: var(--black);
+}
+
+.hero {
+  background: var(--yellow);
+  padding: 5rem 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 7vw, 6rem);
+  color: var(--black);
+  line-height: 0.95;
+}
+
+.hero h1 span { color: var(--pink); }
+
+.lead {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--black);
+  max-width: 560px;
+  line-height: 1.5;
+  margin-top: 1.5rem;
+}
+
+.heroDots {
+  position: absolute;
+  bottom: -20px;
+  right: 40px;
+  width: 180px;
+  height: 180px;
+  background-image: radial-gradient(circle, rgba(0,0,0,0.2) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  pointer-events: none;
+}
+
+.content {
+  padding: 4rem 3rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.textBlock {
+  margin-bottom: 3.5rem;
+  border-left: 4px solid var(--pink);
+  padding-left: 1.5rem;
+}
+
+.textBlock h2 {
+  font-size: 2rem;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.textBlock p {
+  color: #aaa;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  margin-bottom: 0.75rem;
+}
+
+.values {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 8px;
+}
+
+.valueCard {
+  background: #111;
+  padding: 2rem;
+  border-top: 4px solid var(--pink);
+}
+
+.valueCard:nth-child(2) { border-color: var(--yellow); }
+.valueCard:nth-child(3) { border-color: var(--cyan); }
+
+.valueIcon { font-size: 2.5rem; display: block; margin-bottom: 0.75rem; }
+
+.valueCard h3 {
+  font-size: 1.2rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.valueCard p {
+  color: #888;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.closing {
+  margin-top: 1rem;
+  border-left: 4px solid var(--yellow);
+  padding-left: 1.5rem;
+}
+.closing p {
+  color: #aaa;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.7;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .hero, .content { padding: 3rem 1.5rem; }
+}
