@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Navbar.module.css'
-import pubbelLogo from '../assets/pubbel.png'
+import pubbelLogo from '../assets/PUBBEL.png'
 
 const links = [
   { to: '/',        label: 'Start'   },
