@@ -32,22 +32,7 @@ export default function OmOss() {
           </p>
         </div>
 
-        <div className={styles.textBlock}>
-          <h2>VARFÖR JUST EN QUIZAPP?</h2>
-          <p>
-            Mickans kompis — vi kallar honom Källan-til-Allt-Ont — har en olycklig
-            vana att hitta på pubaktiviteter. Det låter oskyldigt. Det är det inte.
-            Vi pratar lappar med frågor skrivna för hand i en anteckningsbok från 2011,
-            oklara regler, och en ihärdig tro på att "Vem regerade Sverige 1387?" är
-            ett rimligt pubnöjeskval.
-          </p>
-          <p>
-            Pubbel kom till för att rädda fredagskvällarna. Ingen anteckningsbok.
-            Inga suddiga lappar. Bara telefonen, en öl och frågor som faktiskt är kul.
-          </p>
-        </div>
-
-        <div className={styles.values}>
+<div className={styles.values}>
           {[
             {
               title: 'KODAD I SKÖVDE',
