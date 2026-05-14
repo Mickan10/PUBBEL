@@ -131,14 +131,21 @@
   font-size: 1.05rem;
   font-weight: 700;
 }
-.option:hover:not(:disabled) {
-  border-color: var(--accent);
-  background: #1f1f1f;
-  color: #fff;
-}
 .option:disabled { cursor: default; }
 .option:focus { outline: none; }
 .option:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (hover: hover) {
+  .option:hover:not(:disabled) {
+    border-color: var(--accent);
+    background: #1f1f1f;
+    color: #fff;
+  }
+  .option:hover:not(:disabled) .optionLetter {
+    background: var(--accent);
+    color: var(--accent-text);
+  }
+}
 
 .optionLetter {
   font-family: 'Anton', sans-serif;
@@ -153,10 +160,6 @@
   color: #888;
   flex-shrink: 0;
   transition: background 0.12s, color 0.12s;
-}
-.option:hover:not(:disabled) .optionLetter {
-  background: var(--accent);
-  color: var(--accent-text);
 }
 
 .optionText { flex: 1; }
