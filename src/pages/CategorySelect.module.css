@@ -4,20 +4,14 @@
 
 /* ── HERO ── */
 .hero {
-  background: #111;
-  border-bottom: 4px solid var(--accent);
+  background: transparent;
   padding: 3rem 2rem 2.5rem;
   position: relative;
-}
-.heroEmoji {
-  font-size: 3rem;
-  line-height: 1;
-  margin-bottom: 0.75rem;
 }
 .heroTitle {
   font-family: 'Anton', sans-serif;
   font-size: clamp(2.5rem, 7vw, 5rem);
-  color: var(--accent);
+  color: var(--accent-text);
   line-height: 0.9;
   margin-bottom: 0.5rem;
 }
@@ -27,7 +21,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: #555;
+  color: rgba(255,255,255,0.55);
 }
 
 /* ── BACK LINK ── */
@@ -37,7 +31,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #555;
+  color: rgba(255,255,255,0.5);
   margin-bottom: 1.5rem;
   transition: color 0.15s;
 }
@@ -54,16 +48,16 @@
 }
 
 .packCard {
-  background: #111;
-  border: 2px solid #1a1a1a;
+  background: rgba(0,0,0,0.25);
+  border: 2px solid rgba(255,255,255,0.15);
   padding: 1.75rem 1.5rem;
   display: block;
-  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  transition: border-color 0.15s, transform 0.15s, background 0.15s;
 }
 .packCard:hover {
-  border-color: var(--accent);
+  background: rgba(0,0,0,0.35);
+  border-color: rgba(255,255,255,0.5);
   transform: translateX(6px);
-  box-shadow: -4px 0 0 var(--accent);
 }
 
 .packTop {
@@ -78,19 +72,19 @@
   font-size: 0.65rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  background: #2a2a2a;
-  color: #888;
+  background: rgba(0,0,0,0.3);
+  color: rgba(255,255,255,0.8);
   padding: 0.2rem 0.6rem;
 }
 
 .packArrow {
   font-family: 'Anton', sans-serif;
   font-size: 1.1rem;
-  color: #333;
+  color: rgba(255,255,255,0.4);
   transition: color 0.15s, transform 0.15s;
 }
 .packCard:hover .packArrow {
-  color: var(--accent);
+  color: #fff;
   transform: translateX(4px);
 }
 
@@ -106,7 +100,7 @@
   font-family: 'Space Grotesk', 'Nunito', sans-serif;
   font-size: 0.9rem;
   font-weight: 700;
-  color: #666;
+  color: rgba(255,255,255,0.65);
   line-height: 1.5;
   margin-bottom: 0.75rem;
 }
@@ -116,7 +110,7 @@
   font-size: 0.7rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #444;
+  color: rgba(255,255,255,0.4);
 }
 
 /* ── NOT FOUND ── */
