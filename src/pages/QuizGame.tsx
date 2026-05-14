@@ -30,6 +30,7 @@ export default function QuizGame({ pack, category }: { pack: QuizPack; category:
     if (i === qs[current].answer) setScore(s => s + 1)
     setPhase('answer')
     setTimeout(() => {
+      ;(document.activeElement as HTMLElement)?.blur()
       if (current + 1 < qs.length) {
         setCurrent(c => c + 1)
         setSelected(null)
