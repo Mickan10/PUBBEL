@@ -596,7 +596,7 @@
 
 .genz_title {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   line-height: 0.85;
   color: #c084fc;
   position: relative;
@@ -636,7 +636,7 @@
 
 .schlatta_title {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   line-height: 0.85;
   color: #7bc44a;
   position: relative;
@@ -675,8 +675,6 @@
   .rock, .sport, .teknik, .genz, .schlatta { aspect-ratio: 1; }
   .rock_ghost { font-size: clamp(5rem, 18vw, 10rem); }
   .sport_circle { width: 80%; right: -10%; }
-  .schlatta_title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
-  .genz_title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
 }
 
 @media (max-width: 420px) {
