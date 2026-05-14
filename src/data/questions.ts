@@ -36,11 +36,11 @@ export type Pack = QuizPack | JeopardyPack
 // ─────────────────────────────────────────────────────────────
 // CATEGORY META
 // ─────────────────────────────────────────────────────────────
-export const categoryMeta: Record<string, { label: string; color: string; emoji: string; textColor: string }> = {
+export const categoryMeta: Record<string, { label: string; color: string; bg?: string; emoji: string; textColor: string }> = {
   schlatta:  { label: 'Schlätta',    color: '#5c8a3c', emoji: '🐄', textColor: '#fff' },
   genz:      { label: 'Gen Z vs Mil', color: '#8B5CF6', emoji: '📱', textColor: '#fff' },
   disney:    { label: 'Disney',      color: '#FF006E', emoji: '🏰', textColor: '#fff' },
-  rock:      { label: 'Rock',        color: '#FFD60A', emoji: '🎸', textColor: '#111' },
+  rock:      { label: 'Rock',        color: '#FFD60A', bg: '#111', emoji: '🎸', textColor: '#fff' },
   country:   { label: 'Country',     color: '#FFD60A', emoji: '🤠', textColor: '#111' },
   varlden:   { label: 'Världen',     color: '#0055FF', emoji: '🌍', textColor: '#fff' },
   film:      { label: 'Film & TV',   color: '#6B21A8', emoji: '🎬', textColor: '#fff' },
