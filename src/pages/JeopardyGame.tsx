@@ -77,7 +77,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
 
   if (phase === 'setup') return (
     <main className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: `radial-gradient(ellipse at 50% 0%, ${meta.color}55 0%, transparent 65%), #0a0a0a` } as React.CSSProperties}>
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.color } as React.CSSProperties}>
       <div className={styles.setupCard}>
         <span className={styles.badge} style={{ background: meta.color, color: meta.textColor }}>
           {meta.label} — Svaret är!
@@ -118,7 +118,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
 
   if (phase === 'board' || phase === 'clue') return (
     <main className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: `radial-gradient(ellipse at 50% 0%, ${meta.color}55 0%, transparent 65%), #0a0a0a` } as React.CSSProperties}>
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.color } as React.CSSProperties}>
 
       {/* ── SCORE BAR ── */}
       <div className={styles.scoreBar}>
@@ -226,7 +226,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
 
   return (
     <main className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: `radial-gradient(ellipse at 50% 0%, ${meta.color}55 0%, transparent 65%), #0a0a0a` } as React.CSSProperties}>
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.color } as React.CSSProperties}>
       <div className={styles.setupCard}>
         <h1 className={styles.setupTitle}>SPELET SLUT!</h1>
         <p className={styles.winnerLine}>
