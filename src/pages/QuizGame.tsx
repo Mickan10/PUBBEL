@@ -95,7 +95,9 @@ export default function QuizGame({ pack, category }: { pack: QuizPack; category:
               }
               return (
                 <button key={i} className={`${styles.option} ${mod}`}
-                  onClick={() => pickAnswer(i)} disabled={phase === 'answer'}>
+                  onClick={() => pickAnswer(i)}
+                  onMouseDown={e => e.preventDefault()}
+                  disabled={phase === 'answer'}>
                   <span className={styles.optionLetter}>{LETTERS[i]}</span>
                   <span className={styles.optionText}>{opt}</span>
                 </button>
