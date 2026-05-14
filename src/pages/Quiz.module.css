@@ -137,6 +137,8 @@
   color: #fff;
 }
 .option:disabled { cursor: default; }
+.option:focus { outline: none; }
+.option:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
 .optionLetter {
   font-family: 'Anton', sans-serif;
