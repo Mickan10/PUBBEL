@@ -19,7 +19,10 @@ export default function CategorySelect() {
   }
 
   return (
-    <main className={styles.wrapper}>
+    <main
+      className={styles.wrapper}
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: `radial-gradient(ellipse at 50% 0%, ${meta.color}55 0%, transparent 65%), #0a0a0a` } as React.CSSProperties}
+    >
       <header
         className={styles.hero}
         style={{ '--accent': meta.color, '--accent-text': meta.textColor } as React.CSSProperties}
