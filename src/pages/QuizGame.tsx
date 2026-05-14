@@ -52,7 +52,7 @@ export default function QuizGame({ pack, category }: { pack: QuizPack; category:
   return (
     <main
       className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: phase === 'intro' ? meta.color : '#0a0a0a' } as React.CSSProperties}
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.color } as React.CSSProperties}
     >
       {phase !== 'intro' && (
         <div className={styles.progressTrack}>

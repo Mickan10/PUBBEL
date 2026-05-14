@@ -118,7 +118,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
 
   if (phase === 'board' || phase === 'clue') return (
     <main className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: '#0a0a0a' } as React.CSSProperties}>
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.color } as React.CSSProperties}>
 
       {/* ── SCORE BAR ── */}
       <div className={styles.scoreBar}>
