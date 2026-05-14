@@ -25,6 +25,7 @@ export default function QuizGame({ pack, category }: { pack: QuizPack; category:
 
   const pickAnswer = useCallback((i: number) => {
     if (phase !== 'question') return
+    ;(document.activeElement as HTMLElement)?.blur()
     setSelected(i)
     if (i === qs[current].answer) setScore(s => s + 1)
     setPhase('answer')
