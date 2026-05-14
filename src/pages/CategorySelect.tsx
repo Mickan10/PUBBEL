@@ -25,7 +25,6 @@ export default function CategorySelect() {
         style={{ '--accent': meta.color, '--accent-text': meta.textColor } as React.CSSProperties}
       >
         <Link to="/" className={styles.back}>← Tillbaka</Link>
-        <div className={styles.heroEmoji}>{meta.emoji}</div>
         <h1 className={styles.heroTitle}>{meta.label.toUpperCase()}</h1>
         <p className={styles.heroSub}>Välj ett quiz att spela</p>
       </header>
