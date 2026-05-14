@@ -672,10 +672,11 @@
       "mat       vetenskap"
       "natur     teknik";
   }
-  .rock, .sport, .teknik, .genz { aspect-ratio: 1; }
-  .schlatta { aspect-ratio: 2 / 1; }
+  .rock, .sport, .teknik, .genz, .schlatta { aspect-ratio: 1; }
   .rock_ghost { font-size: clamp(5rem, 18vw, 10rem); }
   .sport_circle { width: 80%; right: -10%; }
+  .schlatta_title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+  .genz_title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
 }
 
 @media (max-width: 420px) {
