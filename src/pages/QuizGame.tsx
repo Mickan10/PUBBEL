@@ -52,7 +52,7 @@ export default function QuizGame({ pack, category }: { pack: QuizPack; category:
   return (
     <main
       className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: `radial-gradient(ellipse at 50% 0%, ${meta.color}22 0%, transparent 60%), #0a0a0a` } as React.CSSProperties}
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: `radial-gradient(ellipse at 50% 0%, ${meta.color}55 0%, transparent 65%), #0a0a0a` } as React.CSSProperties}
     >
       {phase !== 'intro' && (
         <div className={styles.progressTrack}>
