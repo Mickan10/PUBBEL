@@ -36,7 +36,7 @@ export default function OmOss() {
           {[
             {
               title: 'KODAD I SKÖVDE',
-              text: 'Inga Silicon Valley-kontor. Bara en lägenhet, kaffe och Spotify på repeat.',
+              text: 'Ett litet hus på berget, en kopp kaffe som svalnar och en laptop som glöder. Så skapades Pubbel.',
             },
             {
               title: 'FÖR PUBEN',
