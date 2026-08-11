@@ -1,4 +1,5 @@
 import { useState, FormEvent } from 'react'
+import { Link } from 'react-router-dom'
 import styles from './Kontakt.module.css'
 
 export default function Kontakt() {
@@ -44,6 +45,11 @@ export default function Kontakt() {
               <button type="submit" className={styles.btnPrimary}>
                 Skicka Meddelande
               </button>
+              <p className={styles.privacyNote}>
+                Genom att skicka godkänner du att vi sparar dina uppgifter för
+                att kunna svara dig. Läs vår{' '}
+                <Link to="/integritetspolicy">integritetspolicy</Link>.
+              </p>
             </form>
           )}
         </div>

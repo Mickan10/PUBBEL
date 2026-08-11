@@ -39,12 +39,26 @@
 
 /* ── PACK LIST ── */
 .packList {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 4px;
   padding: 4px;
   max-width: 680px;
   margin: 0 auto;
+}
+
+@media (min-width: 641px) {
+  .packList {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 940px;
+  }
+}
+
+@media (min-width: 960px) {
+  .packList {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1300px;
+  }
 }
 
 .packCard {
@@ -67,6 +81,12 @@
   margin-bottom: 0.75rem;
 }
 
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
 .typeBadge {
   font-family: 'Anton', sans-serif;
   font-size: 0.65rem;
@@ -75,6 +95,17 @@
   background: rgba(0,0,0,0.3);
   color: rgba(255,255,255,0.8);
   padding: 0.2rem 0.6rem;
+}
+
+.difficultyBadge {
+  font-family: 'Anton', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.75);
+  padding: 0.2rem 0.6rem;
+  white-space: nowrap;
 }
 
 .packArrow {

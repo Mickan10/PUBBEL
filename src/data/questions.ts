@@ -4,6 +4,14 @@ export type Question = {
   answer: number
 }
 
+export type Difficulty = 'lätt' | 'mellan' | 'svårt'
+
+export const difficultyMeta: Record<Difficulty, { label: string }> = {
+  'lätt':   { label: 'Uppvärmning' },
+  'mellan': { label: 'Pubnivå' },
+  'svårt':  { label: 'Quizmästare' },
+}
+
 export type JeopardyClue = {
   answer: string   // shown to players — de svarar med en fråga
   question: string // rätt formulering (visas för quizmaster)
@@ -19,6 +27,7 @@ export type QuizPack = {
   title: string
   desc: string
   type: 'quiz'
+  difficulty?: Difficulty
   questions: Question[]
 }
 
@@ -31,26 +40,41 @@ export type JeopardyPack = {
   categories: JeopardyCategory[]
 }
 
-export type Pack = QuizPack | JeopardyPack
+export type SongMystery = {
+  line: string    // en kort rad ur låten — delas upp i rutor A–E, ett ord/en bit i taget
+  song: string
+  artist: string
+}
+
+export type SongPack = {
+  id: string
+  title: string
+  desc: string
+  type: 'sangfallan'
+  difficulty?: Difficulty
+  songs: SongMystery[]
+}
+
+export type Pack = QuizPack | JeopardyPack | SongPack
 
 // ─────────────────────────────────────────────────────────────
 // CATEGORY META
 // ─────────────────────────────────────────────────────────────
-export const categoryMeta: Record<string, { label: string; color: string; bg?: string; emoji: string; textColor: string }> = {
-  schlatta:  { label: 'Schlätta',    color: '#5c8a3c', emoji: '🐄', textColor: '#fff' },
-  genz:      { label: 'Gen Z vs Mil', color: '#8B5CF6', emoji: '📱', textColor: '#fff' },
-  disney:    { label: 'Disney',      color: '#FF006E', emoji: '🏰', textColor: '#fff' },
-  rock:      { label: 'Rock',        color: '#FFD60A', bg: '#111', emoji: '🎸', textColor: '#fff' },
-  country:   { label: 'Country',     color: '#FFD60A', emoji: '🤠', textColor: '#111' },
-  varlden:   { label: 'Världen',     color: '#0055FF', emoji: '🌍', textColor: '#fff' },
-  film:      { label: 'Film & TV',   color: '#6B21A8', emoji: '🎬', textColor: '#fff' },
-  sport:     { label: 'Sport',       color: '#00C49A', emoji: '⚽', textColor: '#111' },
-  historia:  { label: 'Historia',    color: '#FF6B35', emoji: '📜', textColor: '#fff' },
-  musik:     { label: 'Musik',       color: '#E60026', emoji: '🎵', textColor: '#fff' },
-  mat:       { label: 'Mat & Dryck', color: '#FF9500', emoji: '🍕', textColor: '#111' },
-  vetenskap: { label: 'Vetenskap',   color: '#00CCDD', emoji: '🔬', textColor: '#111' },
-  natur:     { label: 'Natur',       color: '#00C49A', emoji: '🌿', textColor: '#111' },
-  teknik:    { label: 'Teknik',      color: '#a855f7', emoji: '💻', textColor: '#fff' },
+export const categoryMeta: Record<string, { label: string; color: string; bg?: string; textColor: string }> = {
+  schlatta:  { label: 'Schlätta',    color: '#5c8a3c', textColor: '#fff' },
+  genz:      { label: 'Gen Z vs Mil', color: '#8B5CF6', textColor: '#fff' },
+  disney:    { label: 'Disney',      color: '#FF006E', textColor: '#fff' },
+  rock:      { label: 'Rock',        color: '#FFD60A', bg: '#111', textColor: '#fff' },
+  country:   { label: 'Country',     color: '#FFD60A', textColor: '#111' },
+  varlden:   { label: 'Världen',     color: '#0055FF', textColor: '#fff' },
+  film:      { label: 'Film & TV',   color: '#6B21A8', textColor: '#fff' },
+  sport:     { label: 'Sport',       color: '#00C49A', textColor: '#111' },
+  historia:  { label: 'Historia',    color: '#FF6B35', textColor: '#fff' },
+  musik:     { label: 'Musik',       color: '#E60026', textColor: '#fff' },
+  mat:       { label: 'Mat & Dryck', color: '#FF9500', textColor: '#111' },
+  vetenskap: { label: 'Vetenskap',   color: '#00CCDD', textColor: '#111' },
+  natur:     { label: 'Natur',       color: '#00C49A', textColor: '#111' },
+  teknik:    { label: 'Teknik',      color: '#a855f7', textColor: '#fff' },
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -67,6 +91,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Klassiker',
       desc: 'Walt Disneys tidiga mästerverk — från Snövit till Lejonkungen',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vilket år kom Disneys första långfilm "Snövit och de sju dvärgarna"?', options: ['1937','1941','1934','1945'], answer: 0 },
         { q: 'Vad heter Ariels far i Den lille sjöjungfrun?', options: ['Poseidon','Triton','Neptune','Oceanus'], answer: 1 },
@@ -85,6 +110,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Nyare filmer',
       desc: 'Frozen, Moana, Coco och moderna hits',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vilket år kom Frozen?', options: ['2012','2013','2014','2015'], answer: 1 },
         { q: 'Vad heter Rapunzels kameleont i Trassel?', options: ['Max','Pascal','Flynn','Eugene'], answer: 1 },
@@ -96,6 +122,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'I Encanto, vilken gåva har Luisa?', options: ['Se framtiden','Prata med djur','Superstyrka','Hela sjuka'], answer: 2 },
         { q: 'Vad heter reindeer i Frozen?', options: ['Sven','Olaf','Hans','Kristoff'], answer: 0 },
         { q: 'I filmen Upp, vad heter pojkscouten?', options: ['Kevin','Russell','Carl','Doug'], answer: 1 },
+      ],
+    },
+    {
+      id: 'experter',
+      title: 'Disney-experten',
+      desc: 'För dig som kan repliker, kompositörer och bortglömda detaljer',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vem komponerade musiken till "Lejonkungen" (score, ej sånger)?', options: ['Alan Menken','Hans Zimmer','John Williams','Randy Newman'], answer: 1 },
+        { q: 'Vad heter studion som gjorde de flesta Disneys tidiga klassiska animerade filmer?', options: ['Pixar','Walt Disney Feature Animation','DreamWorks','Illumination'], answer: 1 },
+        { q: 'I "Pinocchio", vad heter syrsan som fungerar som Pinocchios samvete?', options: ['Jiminy Cricket','Timothy','Cri-Kee','Flit'], answer: 0 },
+        { q: 'Vilken Disneyfilm var den första att helt göras med datoranimation (CGI)?', options: ['Shrek','Toy Story','Antz','Monsters, Inc.'], answer: 1 },
+        { q: 'Vad heter kungariket i "Frozen"?', options: ['Corona','Arendelle','Agrabah','DunBroch'], answer: 1 },
+        { q: 'Vem gav rösten åt Woody i originalversionen av Toy Story?', options: ['Tim Allen','Billy Crystal','Tom Hanks','John Ratzenberger'], answer: 2 },
+        { q: 'I "Skönheten och Odjuret", vad heter kandelabern?', options: ['Cogsworth','Lumière','Chip','Maurice'], answer: 1 },
+        { q: 'Vilket år köpte Disney upp Pixar?', options: ['2003','2006','2009','2012'], answer: 1 },
+        { q: 'Vad heter kungariket i "Modet" (Brave)?', options: ['DunBroch','Arendelle','Corona','Agrabah'], answer: 0 },
+        { q: 'Vem regisserade originalfilmen "Lejonkungen" (1994)?', options: ['John Lasseter','Roger Allers och Rob Minkoff','Ron Clements','Chris Buck'], answer: 1 },
       ],
     },
     {
@@ -157,6 +202,22 @@ export const packs: Record<string, Pack[]> = {
         },
       ],
     },
+    {
+      id: 'sangfallan',
+      title: 'Sångfällan',
+      desc: 'Fem rutor döljer en textrad ord för ord — gissa Disneylåten innan raden avslöjas helt!',
+      type: 'sangfallan',
+      songs: [
+        { line: 'Hakuna Matata, what a wonderful phrase', song: 'Hakuna Matata', artist: 'Lejonkungen' },
+        { line: 'Let it go, let it go', song: 'Let It Go', artist: 'Frozen' },
+        { line: "You've got a friend in me", song: "You've Got a Friend in Me", artist: 'Toy Story' },
+        { line: 'A whole new world', song: 'A Whole New World', artist: 'Aladdin' },
+        { line: 'Tale as old as time', song: 'Beauty and the Beast', artist: 'Skönheten och Odjuret' },
+        { line: 'When you wish upon a star', song: 'When You Wish Upon a Star', artist: 'Pinocchio' },
+        { line: "How far I'll go", song: "How Far I'll Go", artist: 'Moana' },
+        { line: "It's the circle of life", song: 'Circle of Life', artist: 'Lejonkungen' },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -168,6 +229,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Legender',
       desc: 'De stora banden som formade rockhistorien',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vilket band sjunger "Bohemian Rhapsody"?', options: ['The Beatles','Led Zeppelin','Queen','Bon Jovi'], answer: 2 },
         { q: 'Vad heter gitarristen i Rolling Stones?', options: ['Mick Jagger','Keith Richards','Ronnie Wood','Charlie Watts'], answer: 1 },
@@ -186,6 +248,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Modern Rock',
       desc: '90-tal till idag — Foo Fighters, U2, Guns N\' Roses och mer',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vad heter sångaren i U2?', options: ['Bono','The Edge','Adam Clayton','Larry'], answer: 0 },
         { q: 'Vilket år kom Guns N\' Roses "Appetite for Destruction"?', options: ['1985','1987','1989','1991'], answer: 1 },
@@ -197,6 +260,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vad heter Dave Grohls band efter Nirvana?', options: ['Pearl Jam','Stone Temple Pilots','Foo Fighters','Audioslave'], answer: 2 },
         { q: 'Vilket band sjunger "With or Without You"?', options: ['Coldplay','U2','R.E.M.','The Police'], answer: 1 },
         { q: 'Från vilket land kommer Rammstein?', options: ['Österrike','Schweiz','Tyskland','Holland'], answer: 2 },
+      ],
+    },
+    {
+      id: 'expert',
+      title: 'Rock-experten',
+      desc: 'Djupa cuts, bandmedlemmar och rockhistoriens finstilta',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vad hette Black Sabbaths originalsångare innan Ronnie James Dio?', options: ['Ian Gillan','Ozzy Osbourne','David Coverdale','Glenn Hughes'], answer: 1 },
+        { q: 'Vilket album inledde Pink Floyds "The Dark Side of the Moon"-era?', options: ['The Wall','Wish You Were Here','The Dark Side of the Moon','Animals'], answer: 2 },
+        { q: 'Vem var trummis i Led Zeppelin?', options: ['Jason Bonham','John Bonham','Cozy Powell','Ian Paice'], answer: 1 },
+        { q: 'Vilket band gav ut albumet "Master of Reality"?', options: ['Deep Purple','Black Sabbath','Judas Priest','Motörhead'], answer: 1 },
+        { q: 'Vad hette Guns N\' Roses originaltrummis?', options: ['Matt Sorum','Steven Adler','Frank Ferrer','Josh Freese'], answer: 1 },
+        { q: 'Vilken stad bildades Metallica i?', options: ['Los Angeles','San Francisco','Seattle','New York'], answer: 1 },
+        { q: 'Vem skrev basgången till "Money" av Pink Floyd?', options: ['David Gilmour','Roger Waters','Nick Mason','Richard Wright'], answer: 1 },
+        { q: 'Vilket år släppte Nirvana albumet "In Utero"?', options: ['1991','1992','1993','1994'], answer: 2 },
+        { q: 'Vad hette Queens basist?', options: ['Brian May','John Deacon','Roger Taylor','Freddie Mercury'], answer: 1 },
+        { q: 'Vilket band spelade in "Paranoid" 1970?', options: ['Deep Purple','Led Zeppelin','Black Sabbath','Uriah Heep'], answer: 2 },
       ],
     },
     {
@@ -258,6 +340,22 @@ export const packs: Record<string, Pack[]> = {
         },
       ],
     },
+    {
+      id: 'sangfallan',
+      title: 'Sångfällan',
+      desc: 'Fem rutor döljer en textrad ord för ord — gissa rocklåten innan raden avslöjas helt!',
+      type: 'sangfallan',
+      songs: [
+        { line: 'We will, we will rock you', song: 'We Will Rock You', artist: 'Queen' },
+        { line: "It's the eye of the tiger", song: 'Eye of the Tiger', artist: 'Survivor' },
+        { line: "Oh, we're halfway there", song: "Livin' on a Prayer", artist: 'Bon Jovi' },
+        { line: "Don't stop believin'", song: "Don't Stop Believin'", artist: 'Journey' },
+        { line: "I'm on the highway to hell", song: 'Highway to Hell', artist: 'AC/DC' },
+        { line: "We're not gonna take it", song: "We're Not Gonna Take It", artist: 'Twisted Sister' },
+        { line: 'Here we are now, entertain us', song: 'Smells Like Teen Spirit', artist: 'Nirvana' },
+        { line: "Sweet child o' mine", song: "Sweet Child O' Mine", artist: "Guns N' Roses" },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -269,6 +367,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Country-klassiker',
       desc: 'Dolly, Johnny Cash, Garth Brooks och countryns rötter',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vem sjunger originalversionen av "I Will Always Love You"?', options: ['Whitney Houston','Dolly Parton','Shania Twain','Carrie Underwood'], answer: 1 },
         { q: 'Vem kallas "The Man in Black"?', options: ['Merle Haggard','Waylon Jennings','Willie Nelson','Johnny Cash'], answer: 3 },
@@ -287,6 +386,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Modern Country',
       desc: 'Taylor Swift, Carrie Underwood, Luke Bryan och nutida hits',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vad heter Dolly Partons nöjespark?', options: ['Dollyworld','Dollywood','Country World','Parton Park'], answer: 1 },
         { q: 'Vem sjunger "Man! I Feel Like a Woman!"?', options: ['Faith Hill','Martina McBride','Shania Twain','Reba McEntire'], answer: 2 },
@@ -300,6 +400,41 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vilket år kom Lil Nas X "Old Town Road"?', options: ['2017','2018','2019','2020'], answer: 2 },
       ],
     },
+    {
+      id: 'expert',
+      title: 'Country-experten',
+      desc: 'För riktiga kännare — outlaws, songwriters och Nashville-historia',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vilka tre artister ingick i countrytrion "The Highwaymen" tillsammans med Johnny Cash och Willie Nelson?', options: ['Kris Kristofferson och Waylon Jennings','George Strait och Merle Haggard','Kenny Rogers och Glen Campbell','Randy Travis och Alan Jackson'], answer: 0 },
+        { q: 'Vem skrev originalversionen av "I Will Always Love You" som Dolly Parton framförde?', options: ['Loretta Lynn','Dolly Parton själv','Patsy Cline','Tammy Wynette'], answer: 1 },
+        { q: 'Vilket år grundades Grand Ole Opry i Nashville?', options: ['1905','1925','1945','1955'], answer: 1 },
+        { q: 'Vad kallas countrymusikens hedersgalleri i Nashville?', options: ['Country Music Hall of Fame','Nashville Legends Hall','The Opry House','Music Row Museum'], answer: 0 },
+        { q: 'Vem kallas "The First Lady of Country Music"?', options: ['Loretta Lynn','Tammy Wynette','Patsy Cline','Reba McEntire'], answer: 0 },
+        { q: 'Vilket album räknas som countrys första miljonsäljare (1960-talet)?', options: ["Patsy Clines Showcase","Johnny Cashs Ring of Fire","Merle Haggards Okie from Muskogee","Glen Campbells Wichita Lineman"], answer: 0 },
+        { q: 'Vem skrev klassikern "He Stopped Loving Her Today"?', options: ['George Jones själv','Bobby Braddock och Curly Putman','Merle Haggard','Willie Nelson'], answer: 1 },
+        { q: 'Vilken stad räknas som countrymusikens "andra huvudstad" efter Nashville?', options: ['Austin, Texas','Memphis, Tennessee','Bakersfield, Kalifornien','Branson, Missouri'], answer: 2 },
+        { q: 'Var spelades Johnny Cashs klassiska fängelsekonsert 1968 in?', options: ['San Quentin','Folsom Prison','Sing Sing','Alcatraz'], answer: 1 },
+        { q: 'Vilken genre-kombination kallas "countryrock" och populariserades av The Eagles?', options: ['Country blandat med rock','Country blandat med jazz','Country blandat med punk','Country blandat med disco'], answer: 0 },
+      ],
+    },
+    {
+      id: 'sangfallan',
+      title: 'Sångfällan',
+      desc: 'Fem rutor döljer en textrad ord för ord — gissa countrylåten innan raden avslöjas helt!',
+      type: 'sangfallan',
+      songs: [
+        { line: 'Country roads, take me home', song: 'Take Me Home, Country Roads', artist: 'John Denver' },
+        { line: 'Jolene, Jolene, Jolene, Jolene', song: 'Jolene', artist: 'Dolly Parton' },
+        { line: 'I fell into a burning ring of fire', song: 'Ring of Fire', artist: 'Johnny Cash' },
+        { line: "I've got friends in low places", song: 'Friends in Low Places', artist: 'Garth Brooks' },
+        { line: "You've got to know when to hold 'em", song: 'The Gambler', artist: 'Kenny Rogers' },
+        { line: 'Man, I feel like a woman', song: 'Man! I Feel Like a Woman!', artist: 'Shania Twain' },
+        { line: 'On the road again', song: 'On the Road Again', artist: 'Willie Nelson' },
+        { line: "Crazy, I'm crazy for feeling so lonely", song: 'Crazy', artist: 'Patsy Cline' },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -311,6 +446,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Geografi',
       desc: 'Huvudstäder, berg, hav och länder',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vad är huvudstaden i Australien?', options: ['Sydney','Melbourne','Perth','Canberra'], answer: 3 },
         { q: 'Vilket land har flest invånare?', options: ['Indien','USA','Kina','Indonesien'], answer: 0 },
@@ -329,6 +465,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Kulturer & fakta',
       desc: 'Valutor, språk, rekord och kuriosa från hela världen',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vad är valutan i Japan?', options: ['Won','Yen','Yuan','Baht'], answer: 1 },
         { q: 'Hur många officiella språk har Sydafrika?', options: ['8','10','11','14'], answer: 2 },
@@ -342,6 +479,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Hur många procent av jordens yta täcks av vatten?', options: ['51%','61%','71%','81%'], answer: 2 },
       ],
     },
+    {
+      id: 'expert',
+      title: 'Världsexperten',
+      desc: 'Obskyra huvudstäder, gränser och geopolitik för riktiga nördar',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vad är huvudstaden i Kazakstan?', options: ['Almaty','Astana','Bisjkek','Tasjkent'], answer: 1 },
+        { q: 'Vilket land gränsar till flest andra länder?', options: ['Ryssland','Kina','Brasilien','Ryssland och Kina delar förstaplatsen'], answer: 3 },
+        { q: 'Vad heter världens minsta land till ytan efter Vatikanstaten?', options: ['Monaco','San Marino','Liechtenstein','Nauru'], answer: 0 },
+        { q: 'Vilket lands officiella huvudstad är Yamoussoukro, trots att Abidjan är landets största stad?', options: ['Ghana','Elfenbenskusten','Senegal','Nigeria'], answer: 1 },
+        { q: 'Vilka två länder delar den längsta landgränsen i världen?', options: ['USA och Kanada','Ryssland och Kina','Kazakstan och Ryssland','Chile och Argentina'], answer: 0 },
+        { q: 'Vad heter huvudstaden i Myanmar (sedan 2006)?', options: ['Yangon','Naypyidaw','Mandalay','Bagan'], answer: 1 },
+        { q: 'Vilket afrikanskt land har flest grannländer (flest landgränser)?', options: ['Egypten','Sudan','Demokratiska republiken Kongo','Algeriet'], answer: 2 },
+        { q: 'Hur många tidszoner har Ryssland?', options: ['7','9','11','13'], answer: 2 },
+        { q: 'Vilket land omges helt av Sydafrika?', options: ['Swaziland/Eswatini','Lesotho','Botswana','Zimbabwe'], answer: 1 },
+        { q: 'Vad heter världens längsta flod om man räknar Nilen och Amazonfloden mot varandra — vilken är längst?', options: ['Amazonfloden','Nilen','De är exakt lika långa','Yangtzefloden'], answer: 1 },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -353,6 +509,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Film-klassiker',
       desc: 'Titanic, Terminator, James Bond och odödliga repliker',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vem spelar James Bond i "Casino Royale" (2006)?', options: ['Pierce Brosnan','Roger Moore','Daniel Craig','Timothy Dalton'], answer: 2 },
         { q: 'I vilken TV-serie medverkar Walter White?', options: ['Breaking Bad','Dexter','The Wire','Better Call Saul'], answer: 0 },
@@ -371,6 +528,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Modern Film & TV',
       desc: 'MCU, HBO-serier och 2000-talets hits',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vem spelar Joker i filmen från 2019?', options: ['Heath Ledger','Jack Nicholson','Joaquin Phoenix','Jared Leto'], answer: 2 },
         { q: 'Vilket år kom Avengers: Endgame?', options: ['2017','2018','2019','2020'], answer: 2 },
@@ -382,6 +540,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vilket år kom Netflix-serien Stranger Things?', options: ['2014','2015','2016','2017'], answer: 2 },
         { q: 'Vilken film vann Oscar för Bästa Film 2020?', options: ['1917','Joker','Parasite','Marriage Story'], answer: 2 },
         { q: 'Vad heter karaktären Ryan Reynolds spelar i Deadpool?', options: ['Logan','Wade Wilson','Scott Summers','Tony Stark'], answer: 1 },
+      ],
+    },
+    {
+      id: 'expert',
+      title: 'Film-experten',
+      desc: 'Oscars, regissörer och detaljer bara nördar kan',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vilken film vann flest Oscars genom tiderna (delar rekordet)?', options: ['Titanic','Ben-Hur','Herr av ringen: Konungens återkomst','Alla tre delar rekordet med 11 Oscars'], answer: 3 },
+        { q: 'Vem regisserade "2001: A Space Odyssey"?', options: ['Stanley Kubrick','Ridley Scott','Steven Spielberg','George Lucas'], answer: 0 },
+        { q: 'Vilken skådespelare har flest Oscar-nomineringar för Bästa Skådespelare/Skådespelerska genom tiderna?', options: ['Jack Nicholson','Meryl Streep','Katharine Hepburn','Daniel Day-Lewis'], answer: 1 },
+        { q: 'Vad heter produktionsbolaget som Steven Spielberg grundade tillsammans med Jeffrey Katzenberg och David Geffen?', options: ['Amblin Entertainment','DreamWorks','Legendary Pictures','Lucasfilm'], answer: 1 },
+        { q: 'Vilken var den första animerade filmen att nomineras till Oscar för Bästa Film?', options: ['Toy Story','Skönheten och Odjuret','Shrek','Uppdrag: Upp'], answer: 1 },
+        { q: 'Vem spelade huvudrollen i originalfilmen "Psycho" (1960) som Norman Bates?', options: ['Alfred Hitchcock','Anthony Perkins','James Stewart','Cary Grant'], answer: 1 },
+        { q: 'Vilket år grundades filmbolaget Warner Bros.?', options: ['1903','1918','1923','1935'], answer: 2 },
+        { q: 'Vad heter Quentin Tarantinos debutfilm som regissör?', options: ['Pulp Fiction','Reservoir Dogs','Kill Bill','Jackie Brown'], answer: 1 },
+        { q: 'Vilken skådespelare har vunnit flest Oscars för Bästa Manliga Huvudroll?', options: ['Jack Nicholson','Daniel Day-Lewis','Marlon Brando','Tom Hanks'], answer: 1 },
+        { q: 'I vilken stad grundades den första permanenta Hollywood-filmstudion?', options: ['New York','Chicago','Los Angeles','San Francisco'], answer: 2 },
       ],
     },
     {
@@ -454,6 +631,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Sport-klassiker',
       desc: 'Fotboll, OS, tennis och de stora rekorden',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Hur många spelare finns det i ett fotbollslag?', options: ['10','11','12','9'], answer: 1 },
         { q: 'Vilket land har vunnit flest fotbolls-VM?', options: ['Argentina','Tyskland','Brasilien','Italien'], answer: 2 },
@@ -472,6 +650,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Regler & rekord',
       desc: 'Poängsystem, rekord och sportkuriosa',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Hur många poäng ger en "three-pointer" i basket?', options: ['2','3','4','1'], answer: 1 },
         { q: 'Hur många lag tävlar i Premier League?', options: ['16','18','20','22'], answer: 2 },
@@ -485,6 +664,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Hur stor är en fotbollsplan som minst (längd)?', options: ['80m','90m','100m','110m'], answer: 1 },
       ],
     },
+    {
+      id: 'expert',
+      title: 'Sport-experten',
+      desc: 'Rekord, historia och detaljer för de riktiga sportnördarna',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vem har flest Ballon d\'Or-priser genom tiderna?', options: ['Cristiano Ronaldo','Lionel Messi','Michel Platini','Johan Cruyff'], answer: 1 },
+        { q: 'Vilket land vann den allra första fotbolls-VM 1930?', options: ['Brasilien','Argentina','Uruguay','Italien'], answer: 2 },
+        { q: 'Hur många Grand Slam-titlar i singel har Serena Williams vunnit?', options: ['19','21','23','25'], answer: 2 },
+        { q: 'Vilket lag har flest Champions League-titlar?', options: ['AC Milan','Bayern München','Liverpool','Real Madrid'], answer: 3 },
+        { q: 'Vem innehar världsrekordet på 100 meter herrar?', options: ['Tyson Gay','Yohan Blake','Usain Bolt','Justin Gatlin'], answer: 2 },
+        { q: 'Vilken stad höll de olympiska sommarspelen tre gånger (senast 2012)?', options: ['Paris','London','Los Angeles','Aten'], answer: 1 },
+        { q: 'Vilket år spelade Sverige VM-final i fotboll (herrar) senast?', options: ['1958','1974','1994','2006'], answer: 0 },
+        { q: 'Hur många ringar finns det i den olympiska logotypen?', options: ['4','5','6','7'], answer: 1 },
+        { q: 'Vem har flest Formel 1-VM-titlar genom tiderna (delar rekordet)?', options: ['Ayrton Senna','Michael Schumacher och Lewis Hamilton','Sebastian Vettel','Alain Prost'], answer: 1 },
+        { q: 'Vilken sport spelas Ryder Cup i?', options: ['Tennis','Golf','Segling','Ridsport'], answer: 1 },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -496,6 +694,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Världshistoria',
       desc: 'Krig, revolutioner, uppfinnare och stora händelser',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vilket år föll Berlinmuren?', options: ['1987','1989','1991','1985'], answer: 1 },
         { q: 'Vem var den första presidenten i USA?', options: ['Abraham Lincoln','Thomas Jefferson','Benjamin Franklin','George Washington'], answer: 3 },
@@ -514,6 +713,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Modern Historia',
       desc: '1900-tal till idag — krig, politik och upptäckter',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vilket år grundades USA?', options: ['1774','1776','1778','1780'], answer: 1 },
         { q: 'Vad heter det skepp som sjönk på sin jungfrufärd 1912?', options: ['Lusitania','Britannic','Titanic','Olympic'], answer: 2 },
@@ -527,6 +727,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vilket år hölls Berlin-OS (de kontroversielle)?', options: ['1932','1934','1936','1938'], answer: 2 },
       ],
     },
+    {
+      id: 'expert',
+      title: 'Historie-experten',
+      desc: 'Årtal, fördrag och detaljer för de riktigt historieintresserade',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vilket år undertecknades Westfaliska freden som avslutade Trettioåriga kriget?', options: ['1618','1648','1678','1715'], answer: 1 },
+        { q: 'Vem var Frankrikes kejsare vid slaget vid Waterloo 1815?', options: ['Ludvig XVI','Napoleon Bonaparte','Napoleon III','Karl X'], answer: 1 },
+        { q: 'Vilket år delades Tyskland i Öst- och Västtyskland?', options: ['1945','1949','1955','1961'], answer: 1 },
+        { q: 'Vem var Sveriges regent under stormaktstiden och slaget vid Poltava?', options: ['Gustav II Adolf','Karl X Gustav','Karl XII','Karl XI'], answer: 2 },
+        { q: 'Vilket imperium besegrade Konstantinopel 1453?', options: ['Osmanska riket','Mongoliska riket','Persiska riket','Ryska riket'], answer: 0 },
+        { q: 'Vilket år bröt Vietnamkriget officiellt ut mellan USA och Nordvietnam?', options: ['1955','1961','1965','1968'], answer: 2 },
+        { q: 'Vem myrdades i Sarajevo 1914 och utlöste första världskriget?', options: ['Tsar Nikolaj II','Ärkehertig Franz Ferdinand','Kejsar Wilhelm II','Kung Peter I'], answer: 1 },
+        { q: 'Vilket forntida underverk stod i Alexandria?', options: ['Hängande trädgårdarna','Colossus av Rhodos','Fyrtornet i Alexandria','Zeusstatyn i Olympia'], answer: 2 },
+        { q: 'Vilket år föll Romarriket (västra delen)?', options: ['376 e.Kr.','410 e.Kr.','476 e.Kr.','527 e.Kr.'], answer: 2 },
+        { q: 'Vem ledde Sovjetunionen under Kubakrisen 1962?', options: ['Josef Stalin','Nikita Chrusjtjov','Leonid Brezjnev','Michail Gorbatjov'], answer: 1 },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -538,6 +757,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Musik-klassiker',
       desc: 'ABBA, Michael Jackson, Beatles och odödliga artister',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vem kallas "The King of Pop"?', options: ['Prince','Michael Jackson','Elvis Presley','David Bowie'], answer: 1 },
         { q: 'Vilket år kom Beatles till USA för första gången?', options: ['1962','1963','1964','1965'], answer: 2 },
@@ -556,6 +776,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Modern Musik',
       desc: 'Från 80-talets synth till dagens hits',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vilket år kom Michael Jacksons album "Thriller"?', options: ['1980','1982','1984','1986'], answer: 1 },
         { q: 'Vem sjunger "Someone Like You"?', options: ['Amy Winehouse','Duffy','Adele','Lana Del Rey'], answer: 2 },
@@ -567,6 +788,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vilket år upplöstes Daft Punk?', options: ['2019','2020','2021','2022'], answer: 2 },
         { q: 'Vad heter Daft Punks sista album?', options: ['Discovery','Homework','Human After All','Random Access Memories'], answer: 3 },
         { q: 'Vem sjunger "Blinding Lights"?', options: ['Drake','The Weeknd','Post Malone','Khalid'], answer: 1 },
+      ],
+    },
+    {
+      id: 'expert',
+      title: 'Musik-experten',
+      desc: 'Skivbolag, årtal och musikhistoriens finstilta',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vilket skivbolag grundade Berry Gordy 1959 i Detroit?', options: ['Atlantic Records','Motown','Stax Records','Columbia Records'], answer: 1 },
+        { q: 'Vem producerade merparten av Michael Jacksons album "Thriller"?', options: ['Berry Gordy','Quincy Jones','Rick Rubin','Nile Rodgers'], answer: 1 },
+        { q: 'Vilket år bildades Spotify?', options: ['2004','2006','2008','2010'], answer: 1 },
+        { q: 'Vem skrev de flesta av ABBAs låtar tillsammans?', options: ['Agnetha och Frida','Benny och Björn','Stikkan Anderson ensam','Björn och Agnetha'], answer: 1 },
+        { q: 'Vilken artist har sålt flest skivor genom tiderna enligt de flesta uppskattningar?', options: ['Michael Jackson','The Beatles','Elvis Presley','Madonna'], answer: 1 },
+        { q: 'Vad hette Freddie Mercury i verkliga livet?', options: ['Farrokh Bulsara','Fredrik Mercurius','Frederick Bulsara','Farokh Mercury'], answer: 0 },
+        { q: 'Vilket år dog Elvis Presley?', options: ['1975','1977','1979','1981'], answer: 1 },
+        { q: 'Vilket instrument spelade Jimi Hendrix "upp och ner" fast strängad för högerhänta?', options: ['Bas','Gitarr','Trummor','Klaviatur'], answer: 1 },
+        { q: 'Vem grundade skivbolaget Def Jam Recordings?', options: ['Dr. Dre och Snoop Dogg','Rick Rubin och Russell Simmons','Jay-Z och Kanye West','Puff Daddy'], answer: 1 },
+        { q: 'Vilket år uppträdde Beatles för sista gången offentligt tillsammans (taklandet)?', options: ['1966','1967','1969','1970'], answer: 2 },
       ],
     },
     {
@@ -628,6 +868,22 @@ export const packs: Record<string, Pack[]> = {
         },
       ],
     },
+    {
+      id: 'sangfallan',
+      title: 'Sångfällan',
+      desc: 'Fem rutor döljer en textrad ord för ord — gissa poplåten innan raden avslöjas helt!',
+      type: 'sangfallan',
+      songs: [
+        { line: 'You are the dancing queen', song: 'Dancing Queen', artist: 'ABBA' },
+        { line: 'Is this the real life', song: 'Bohemian Rhapsody', artist: 'Queen' },
+        { line: 'Billie Jean is not my lover', song: 'Billie Jean', artist: 'Michael Jackson' },
+        { line: "Hey Jude, don't make it bad", song: 'Hey Jude', artist: 'The Beatles' },
+        { line: 'And I will always love you', song: 'I Will Always Love You', artist: 'Whitney Houston' },
+        { line: 'You can stand under my umbrella', song: 'Umbrella', artist: 'Rihanna' },
+        { line: 'We could have had it all', song: 'Rolling in the Deep', artist: 'Adele' },
+        { line: "I'm in love with the shape of you", song: 'Shape of You', artist: 'Ed Sheeran' },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -639,6 +895,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Mat-klassiker',
       desc: 'Ursprung, råvaror och kökshemligheter',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vilket land är ursprungslandet för pizza?', options: ['Frankrike','Spanien','Grekland','Italien'], answer: 3 },
         { q: 'Vad är sushi inrullat i?', options: ['Risapper','Nori (tång)','Rispapper','Bambu'], answer: 1 },
@@ -657,6 +914,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Världens kök',
       desc: 'Rätter och drycker från hela världen',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vilket land uppfann champagne?', options: ['Italien','Spanien','Frankrike','Portugal'], answer: 2 },
         { q: 'Vad heter den spanska risrätten med skaldjur?', options: ['Paella','Risotto','Pilaf','Biriyani'], answer: 0 },
@@ -670,6 +928,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vad heter den portugisiska äggkräm-tarteletten?', options: ['Churros','Pastel de nata','Flan','Crème brûlée'], answer: 1 },
       ],
     },
+    {
+      id: 'expert',
+      title: 'Mat-experten',
+      desc: 'Michelin, tekniker och råvaror för de riktiga matnördarna',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vilket land gav ut den första Michelin-guiden?', options: ['Italien','Frankrike','Spanien','Belgien'], answer: 1 },
+        { q: 'Vad kallas tekniken att laga mat i vakuumförpackning i lågt och jämnt vattenbad?', options: ['Confit','Sous vide','Braisering','Blanchering'], answer: 1 },
+        { q: 'Vilken svamp är en av världens dyraste råvaror och skördas ofta i Piemonte?', options: ['Kantarell','Vit tryffel','Karljohansvamp','Shiitake'], answer: 1 },
+        { q: 'Vad heter processen där kött mörnas genom att hänga i kylt, kontrollerat klimat?', options: ['Dry aging','Curing','Brining','Smoking'], answer: 0 },
+        { q: 'Vilket land är ursprungslandet för sojasås?', options: ['Japan','Thailand','Kina','Korea'], answer: 2 },
+        { q: 'Vad kallas den femte grundsmaken utöver sött, salt, surt och beskt?', options: ['Umami','Metallisk','Fett','Astringent'], answer: 0 },
+        { q: 'Vilken stad räknas som champagnedistriktets huvudort i Frankrike?', options: ['Bordeaux','Reims','Lyon','Dijon'], answer: 1 },
+        { q: 'Vad är "roux" gjort av i klassiskt förhållande?', options: ['Lika delar smör och mjöl','Mest mjöl, lite smör','Mest smör, lite mjöl','Smör, mjöl och grädde'], answer: 0 },
+        { q: 'Vilket land anses vara currygrytans (curry) ursprung?', options: ['Thailand','Indien','Pakistan','Bangladesh'], answer: 1 },
+        { q: 'Vad kallas den japanska tekniken att skära rå fisk i tunna skivor?', options: ['Sashimi','Nigiri','Tempura','Teriyaki'], answer: 0 },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -681,6 +958,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Vetenskap-klassiker',
       desc: 'Kemi, fysik, biologi och de stora upptäckterna',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vad är det kemiska tecknet för guld?', options: ['Gu','Go','Au','Ag'], answer: 2 },
         { q: 'Hur många ben har en spindel?', options: ['6','8','10','12'], answer: 1 },
@@ -699,6 +977,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Avancerad vetenskap',
       desc: 'Astronomi, kemi och biologins hemligheter',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vad är det tyngsta elementet som finns naturligt?', options: ['Bly','Uran','Guld','Kvicksilver'], answer: 1 },
         { q: 'Hur många planeter finns i solsystemet?', options: ['7','8','9','10'], answer: 1 },
@@ -712,6 +991,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vilket organ producerar insulin?', options: ['Lever','Njure','Bukspottkörtel','Mjälte'], answer: 2 },
       ],
     },
+    {
+      id: 'expert',
+      title: 'Vetenskaps-experten',
+      desc: 'Kvantfysik, kemi och biologi på riktigt nördnivå',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vad heter partikeln som ger andra partiklar massa, bekräftad 2012 av CERN?', options: ['Foton','Higgsbosonen','Neutrino','Kvark'], answer: 1 },
+        { q: 'Vilket grundämne har det kemiska tecknet "Fe"?', options: ['Fluor','Fosfor','Järn','Franium'], answer: 2 },
+        { q: 'Vad kallas teorin om att universum expanderat från en extremt het och tät punkt?', options: ['Stringteorin','Big Bang-teorin','Multiversumteorin','Inflationsteorin'], answer: 1 },
+        { q: 'Hur många par kromosomer har en normal mänsklig kroppscell?', options: ['22','23','24','46'], answer: 1 },
+        { q: 'Vad kallas processen där celler delar sig till identiska dotterceller?', options: ['Meios','Mitos','Fotosyntes','Osmos'], answer: 1 },
+        { q: 'Vilken forskare formulerade evolutionsteorin genom naturligt urval?', options: ['Gregor Mendel','Charles Darwin','Louis Pasteur','Alfred Wallace'], answer: 1 },
+        { q: 'Vad är pH-värdet för rent vatten vid 25°C?', options: ['5','6','7','8'], answer: 2 },
+        { q: 'Vilken partikel har negativ laddning i en atom?', options: ['Proton','Neutron','Elektron','Foton'], answer: 2 },
+        { q: 'Vad kallas avståndet som motsvarar den sträcka ljus färdas på ett år?', options: ['Ljuskilometer','Ljusår','Parsek','Astronomisk enhet'], answer: 1 },
+        { q: 'Vilket element har flest protoner av alla naturligt förekommande grundämnen?', options: ['Guld','Uran','Bly','Plutonium'], answer: 1 },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -723,6 +1021,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Djurens värld',
       desc: 'Rekord, beteenden och märkliga fakta från djurriket',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vilket är det största djuret på land?', options: ['Noshörning','Flodhäst','Elefant','Giraff'], answer: 2 },
         { q: 'Vilket är det snabbaste landdjuret?', options: ['Lejon','Gepard','Antilop','Häst'], answer: 1 },
@@ -741,6 +1040,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Naturen & klimatet',
       desc: 'Växter, ekosystem, hav och jordens krafter',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Hur många procent av jordens yta täcks av vatten?', options: ['51%','61%','71%','81%'], answer: 2 },
         { q: 'Vad kallas det triangelformade området där en flod mynnar ut?', options: ['Estuarium','Fjord','Delta','Sund'], answer: 2 },
@@ -754,6 +1054,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Hur djupt är Marianergraven (ungefär)?', options: ['6 km','9 km','11 km','14 km'], answer: 2 },
       ],
     },
+    {
+      id: 'expert',
+      title: 'Natur-experten',
+      desc: 'Ekosystem, arter och naturfenomen för de riktiga naturnördarna',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vad kallas fenomenet där ett djur eller en växtart är den enda i sitt slag på en viss plats i världen?', options: ['Endemisk','Invasiv','Symbiotisk','Migrerande'], answer: 0 },
+        { q: 'Vilket är det största regnskogsområdet i världen till ytan?', options: ['Kongoregnskogen','Amazonas regnskog','Sydostasiens regnskogar','Daintree'], answer: 1 },
+        { q: 'Vad kallas processen där ett ekosystem gradvis förändras över tid, t.ex. en sjö som blir till skog?', options: ['Succession','Symbios','Predation','Adaption'], answer: 0 },
+        { q: 'Vilket hav är det saltaste i världen?', options: ['Döda havet','Röda havet','Medelhavet','Persiska viken'], answer: 0 },
+        { q: 'Vad kallas ett djur som äter både växter och kött?', options: ['Herbivor','Karnivor','Omnivor','Detritivor'], answer: 2 },
+        { q: 'Vilket land har världens största regnskogsområde inom sina gränser?', options: ['Brasilien','Peru','Indonesien','Colombia'], answer: 0 },
+        { q: 'Vad kallas det naturliga fenomenet norrsken vetenskapligt?', options: ['Aurora Borealis','Aurora Polaris','Aurora Lumen','Aurora Nordis'], answer: 0 },
+        { q: 'Vilken av dessa är inte en av jordens klimatzoner?', options: ['Tropisk','Tempererad','Polär','Vulkanisk'], answer: 3 },
+        { q: 'Vad kallas relationen där båda arter gynnas av varandra, t.ex. bin och blommor?', options: ['Parasitism','Mutualism','Kommensalism','Konkurrens'], answer: 1 },
+        { q: 'Vilket träd är känt för att vara jordens högsta trädart?', options: ['Douglasgran','Kustsekvoja','Eukalyptus','Mammutträd'], answer: 1 },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -765,6 +1084,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Slang & vibes',
       desc: 'Gen Z möter Millennials — vem förstår vad?',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vad betyder "no cap"?', options: ['Man har keps på sig', 'Utan lögn / på riktigt', 'Ingen aning', 'Stoppa det där'], answer: 1 },
         { q: 'Vilket av dessa är klassisk millennial-slang?', options: ['Rizz', 'Slay', 'On fleek', 'Bussin'], answer: 2 },
@@ -783,6 +1103,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Kultur & referenser',
       desc: 'Vem minns vad — TikTok, MSN, Vine och mer',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vilken app är mest associerad med Gen Z?', options: ['MSN Messenger', 'MySpace', 'TikTok', 'Facebook'], answer: 2 },
         { q: 'Vad är "Vine"?', options: ['En Gen Z-app som finns idag', 'En kortvideoapp som lades ner 2017', 'En Spotify-funktion', 'En typ av filter på Instagram'], answer: 1 },
@@ -796,6 +1117,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vad betyder "slay" enligt Gen Z?', options: ['Att döda något', 'Att prestera fantastiskt / se grym ut', 'Att vara trött', 'Att ligga och sova'], answer: 1 },
       ],
     },
+    {
+      id: 'expert',
+      title: 'Djupdykaren',
+      desc: 'Riktigt nischade referenser — bara för de mest uppkopplade',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vad betyder "gyat" i Gen Alpha/Z-slang?', options: ['Ett utrop om en stor bakdel', 'En hälsning', 'Ett avsked', 'En typ av dans'], answer: 0 },
+        { q: 'Vad står förkortningen "IYKYK" för?', options: ['If You Know You Know', 'It\'s Your Kall, You Keep it', 'I Yield, Katie, You Know', 'In Your Keeping, You Know'], answer: 0 },
+        { q: 'Vad betyder "delulu" i internetslang?', options: ['Väldigt glad', 'Att leva i en fantasivärld / vara i förnekelse', 'Extremt trött', 'Att vara sen till något'], answer: 1 },
+        { q: 'Millennial-referens: vad var "Tamagotchi"?', options: ['En handhållen digital husdjursleksak', 'Ett tidigt MMO-spel', 'En chattapp', 'En musikspelare'], answer: 0 },
+        { q: 'Vad betyder "mid" i Gen Z-slang?', options: ['Medelmåttigt / inte imponerande', 'Fantastiskt', 'Halvvägs klar', 'Mitt på dagen'], answer: 0 },
+        { q: 'Vad var "MySpace Tom"?', options: ['En musikartist', 'MySpace-grundarens profil som blev allas första "vän"', 'En meme-katt', 'En tidig influencer'], answer: 1 },
+        { q: 'Vad betyder "based" i internetslang?', options: ['Att stå för sina åsikter utan att bry sig om andras gillande', 'Att vara osäker', 'Att kopiera någon annan', 'Att vara ny på internet'], answer: 0 },
+        { q: 'Hur långa var videoklippen på appen Vine som mest?', options: ['3 sekunder', '6 sekunder', '15 sekunder', '30 sekunder'], answer: 1 },
+        { q: 'Vad betyder "npc" som slangterm om en person?', options: ['En person som agerar utan egen personlighet, som en spelfigur', 'En expert på TV-spel', 'En influencer', 'En ny medlem i en grupp'], answer: 0 },
+        { q: 'Vad var poängen med appen "Yik Yak" som var populär bland millennials/tidig Gen Z?', options: ['Anonyma inlägg baserat på plats', 'Bildredigering', 'Videosamtal', 'Musikdelning'], answer: 0 },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -807,6 +1147,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Schlätta — lokalquizet',
       desc: 'För dig som vet var Schlätta är. Och för alla andra som snart får reda på det.',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vilken stad ligger Schlätta närmast?', options: ['Tidaholm', 'Skövde', 'Falköping', 'Mariestad'], answer: 1 },
         { q: 'I vilket landskap ligger Schlätta?', options: ['Småland', 'Östergötland', 'Västergötland', 'Bohuslän'], answer: 2 },
@@ -820,6 +1161,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vad heter kommunen som Schlätta tillhör?', options: ['Falköpings kommun', 'Tidaholms kommun', 'Skövde kommun', 'Götene kommun'], answer: 2 },
       ],
     },
+    {
+      id: 'akta-schlattabo',
+      title: 'Äkta Schlättabo',
+      desc: 'Bara för de som faktiskt växt upp på Schlätta-nivå av lantlighet',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vad heter det stora sjukhuset i Skövde?', options: ['Kärnsjukhuset', 'Sahlgrenska', 'Länssjukhuset', 'Sankt Görans'], answer: 0 },
+        { q: 'Vilket berg/platå ligger precis norr om Skövde och är ett populärt utflyktsmål?', options: ['Kinnekulle', 'Billingen', 'Halleberg', 'Hunneberg'], answer: 1 },
+        { q: 'Vad heter Skövdes stora köpcentrum i centrala stan?', options: ['Kompassen', 'Skövde Galleria', 'Norrmalm', 'Regementet'], answer: 0 },
+        { q: 'Vilken myndighet/skola inom försvaret finns i Skövde?', options: ['Försvarshögskolan', 'Livgardet', 'Markstridsskolan', 'Sjökrigsskolan'], answer: 2 },
+        { q: 'Om du säger att något är "en bit ut på landet" från Skövde, hur långt menar en äkta Schlättabo troligen?', options: ['Under 5 minuter', '10-20 minuter', 'En hel dagsresa', 'Utomlands'], answer: 1 },
+        { q: 'Vad är troligast att man möter fler av på en landsväg vid Schlätta en vardagskväll?', options: ['Taxibilar', 'Rådjur', 'Elsparkcyklar', 'Turistbussar'], answer: 1 },
+        { q: 'Vilket väder är mest "typiskt västgötskt" enligt lokal klyscha?', options: ['Ihållande snö', 'Ombytligt — sol och regn samma dag', 'Ökenvärme', 'Orkanvindar'], answer: 1 },
+        { q: 'Vad gör man troligtvis om grannen på Schlätta hör av sig oanmäld?', options: ['Låtsas inte vara hemma', 'Bjuder in på kaffe', 'Ringer polisen', 'Flyttar'], answer: 1 },
+        { q: 'Vad är den snabbaste vägen att beskriva var Schlätta ligger för någon som aldrig hört talas om det?', options: ['"Nära Stockholm"', '"Strax utanför Skövde"', '"I norra Norrland"', '"På en ö"'], answer: 1 },
+        { q: 'Vad krävs troligen mest av allt för att överleva en vinter på Schlätta?', options: ['Tålamod och bra vinterdäck', 'Palmer', 'Ett gym-kort', 'Ett pass'], answer: 0 },
+      ],
+    },
   ],
 
   // ══════════════════════════════════════════════════════════
@@ -831,6 +1191,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Teknik-klassiker',
       desc: 'Apple, Google, Windows och teknikhistoriens milstolpar',
       type: 'quiz',
+      difficulty: 'lätt',
       questions: [
         { q: 'Vilket år grundades Apple?', options: ['1974','1976','1980','1984'], answer: 1 },
         { q: 'Vad står "HTML" för?', options: ['HyperText Markup Language','HighText Machine Language','HyperText Media Language','HyperTransfer Markup Language'], answer: 0 },
@@ -849,6 +1210,7 @@ export const packs: Record<string, Pack[]> = {
       title: 'Modern Teknik',
       desc: 'AI, sociala medier och framtidens teknologi',
       type: 'quiz',
+      difficulty: 'mellan',
       questions: [
         { q: 'Vad är det binära talsystemets bas?', options: ['2','8','10','16'], answer: 0 },
         { q: 'Vilket år lanserades Twitter?', options: ['2004','2006','2008','2010'], answer: 1 },
@@ -860,6 +1222,25 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vad kallas en miljarddels sekund inom datorer?', options: ['Mikrosekund','Millisekund','Nanosekund','Pikosekund'], answer: 2 },
         { q: 'Vem grundade Tesla?', options: ['Enbart Elon Musk','Martin Eberhard och Marc Tarpenning','Jeff Bezos','Bill Gates'], answer: 1 },
         { q: 'Vilket år kom ChatGPT?', options: ['2020','2021','2022','2023'], answer: 2 },
+      ],
+    },
+    {
+      id: 'expert',
+      title: 'Teknik-experten',
+      desc: 'Grundare, protokoll och detaljer för de riktiga tech-nördarna',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vad står förkortningen "HTTP" för?', options: ['HyperText Transfer Protocol', 'High Transfer Text Protocol', 'HyperText Transmission Process', 'Home Tool Transfer Protocol'], answer: 0 },
+        { q: 'Vem grundade Linux-kärnan?', options: ['Bill Gates', 'Linus Torvalds', 'Dennis Ritchie', 'Richard Stallman'], answer: 1 },
+        { q: 'Vilket år grundades Amazon?', options: ['1993', '1994', '1995', '1996'], answer: 1 },
+        { q: 'Vad kallas den första allmänt kända datorn som räknas som en av de första elektroniska datorerna (1940-talet)?', options: ['UNIVAC', 'ENIAC', 'Colossus', 'Z3'], answer: 1 },
+        { q: 'Vad står "GPU" för?', options: ['General Processing Unit', 'Graphics Processing Unit', 'Global Program Utility', 'Graphic Program Unit'], answer: 1 },
+        { q: 'Vem grundade Microsoft tillsammans med Bill Gates?', options: ['Steve Jobs', 'Paul Allen', 'Steve Ballmer', 'Larry Ellison'], answer: 1 },
+        { q: 'Vilket år lanserade Apple den första Macintosh-datorn?', options: ['1981', '1984', '1987', '1990'], answer: 1 },
+        { q: 'Vad kallas praxisen att lura användare att lämna ut känslig information via falska mejl/sidor?', options: ['Spoofing', 'Phishing', 'Hacking', 'Cracking'], answer: 1 },
+        { q: 'Vilket företag utvecklade programmeringsspråket Java?', options: ['Microsoft', 'IBM', 'Sun Microsystems', 'Oracle'], answer: 2 },
+        { q: 'Vad betyder förkortningen "URL"?', options: ['Universal Resource Locator', 'Uniform Resource Locator', 'Unified Reference Link', 'Universal Reference Locator'], answer: 1 },
       ],
     },
   ],

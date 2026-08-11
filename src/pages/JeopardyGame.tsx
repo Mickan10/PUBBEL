@@ -21,6 +21,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
   const [used,        setUsed]        = useState<Set<string>>(new Set())
   const [activeCell,  setActiveCell]  = useState<{ catIdx: number; clueIdx: number } | null>(null)
   const [showAnswer,  setShowAnswer]  = useState(false)
+  const [showHelp,    setShowHelp]    = useState(false)
 
   const totalCells = pack.categories.length * pack.points.length
 
@@ -33,6 +34,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
     setTeams(filtered.map(name => ({ name, score: 0 })))
     setUsed(new Set())
     setPhase('board')
+    setShowHelp(true)
   }
 
   function openClue(catIdx: number, clueIdx: number) {
@@ -57,6 +59,10 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
     const newUsed = used.size + 1
     if (newUsed >= totalCells) setPhase('finished')
     else setPhase('board')
+  }
+
+  function dismissHelp() {
+    setShowHelp(false)
   }
 
   function addTeam() {
@@ -120,42 +126,68 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
     <main className={styles.wrapper}
       style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.bg ?? meta.color } as React.CSSProperties}>
 
-      {/* ── SCORE BAR ── */}
-      <div className={styles.scoreBar}>
-        {teams.map((t, i) => (
-          <div key={i} className={styles.scoreTeam}>
-            <span className={styles.scoreName}>{t.name}</span>
-            <span className={styles.scorePoints} style={{ color: meta.color }}>{t.score}</span>
+      {/* ── BOARD AREA (score + grid) ── */}
+      <div className={styles.boardArea}>
+        {/* ── SCORE BAR ── */}
+        <div className={styles.scoreBar}>
+          {teams.map((t, i) => (
+            <div key={i} className={styles.scoreTeam}>
+              <span className={styles.scoreName}>{t.name}</span>
+              <span className={styles.scorePoints} style={{ color: meta.color }}>{t.score}</span>
+            </div>
+          ))}
+          <div className={styles.scoreRemaining}>
+            {totalCells - used.size} kvar
           </div>
-        ))}
-        <div className={styles.scoreRemaining}>
-          {totalCells - used.size} kvar
+        </div>
+
+        {/* ── BOARD ── */}
+        <div className={styles.board}
+          style={{
+            gridTemplateColumns: `repeat(${pack.categories.length}, 1fr)`,
+            gridTemplateRows: `auto repeat(${pack.points.length}, 1fr)`,
+          }}>
+          {pack.categories.map((cat, catIdx) => (
+            <div key={catIdx} className={styles.categoryHeader}>{cat.name}</div>
+          ))}
+          {pack.points.map((points, clueIdx) =>
+            pack.categories.map((_, catIdx) => {
+              const key = cellKey(catIdx, clueIdx)
+              const isUsed = used.has(key)
+              return (
+                <button
+                  key={key}
+                  className={`${styles.cell} ${isUsed ? styles.cellUsed : ''}`}
+                  onClick={() => openClue(catIdx, clueIdx)}
+                  disabled={isUsed}
+                >
+                  {isUsed ? '—' : points}
+                </button>
+              )
+            })
+          )}
         </div>
       </div>
 
-      {/* ── BOARD ── */}
-      <div className={styles.board}
-        style={{ gridTemplateColumns: `repeat(${pack.categories.length}, 1fr)` }}>
-        {pack.categories.map((cat, catIdx) => (
-          <div key={catIdx} className={styles.categoryHeader}>{cat.name}</div>
-        ))}
-        {pack.points.map((points, clueIdx) =>
-          pack.categories.map((_, catIdx) => {
-            const key = cellKey(catIdx, clueIdx)
-            const isUsed = used.has(key)
-            return (
-              <button
-                key={key}
-                className={`${styles.cell} ${isUsed ? styles.cellUsed : ''}`}
-                onClick={() => openClue(catIdx, clueIdx)}
-                disabled={isUsed}
-              >
-                {isUsed ? '—' : points}
-              </button>
-            )
-          })
-        )}
-      </div>
+      {/* ── HELP POPUP ── */}
+      {showHelp && phase === 'board' && (
+        <div className={styles.helpOverlay} onClick={dismissHelp}>
+          <div className={styles.helpCard} onClick={e => e.stopPropagation()}>
+            <button className={styles.helpClose} onClick={dismissHelp}>✕</button>
+            <h2 className={styles.helpTitle}>Så funkar det</h2>
+            <ol className={styles.helpList}>
+              <li>Klicka på en ruta med poäng för att öppna en fråga.</li>
+              <li>Klicka på <strong>"Visa rätt fråga"</strong> för att se svaret.</li>
+              <li>Välj vilket lag som svarade rätt — eller "Ingen fick det" om inget lag svarade rätt.</li>
+            </ol>
+            <button className={styles.helpStart}
+              style={{ background: meta.color, color: meta.textColor }}
+              onClick={dismissHelp}>
+              Nu kör vi!
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* ── CLUE OVERLAY ── */}
       {phase === 'clue' && activeCell && (

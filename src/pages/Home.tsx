@@ -61,7 +61,7 @@ export default function Home() {
         </Link>
 
         <Link to="/quiz/mat" className={`${s.cell} ${s.mat}`}>
-          <div className={s.mat_emoji}>🍕</div>
+          <div className={s.mat_dots} />
           <h2 className={s.mat_title}>MAT<br />&amp;<br />DRYCK</h2>
         </Link>
 
@@ -83,7 +83,8 @@ export default function Home() {
 
         {/* ── 14 GEN Z vs MIL ──────────── 2×1 lila */}
         <Link to="/quiz/genz" className={`${s.cell} ${s.genz}`}>
-          <h2 className={s.genz_title}>GEN Z<br />VS MIL</h2>
+          <div className={s.genz_lines} />
+          <h2 className={s.genz_title}>GEN Z VS<br />MILLENNIALS</h2>
           <p className={s.genz_sub}>slang · vibes · referencias</p>
         </Link>
 
@@ -91,7 +92,6 @@ export default function Home() {
         <Link to="/quiz/schlatta" className={`${s.cell} ${s.schlatta}`}>
           <div className={s.schlatta_bg} />
           <h2 className={s.schlatta_title}>SCHL-<br />ÄTTA</h2>
-          <p className={s.schlatta_sub}>🐄</p>
         </Link>
 
       </div>

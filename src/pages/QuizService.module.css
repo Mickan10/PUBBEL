@@ -79,7 +79,7 @@
   font-family: 'Anton', sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.22em;
-  color: #444;
+  color: #999;
   margin-bottom: 2rem;
   text-transform: uppercase;
 }
@@ -116,7 +116,7 @@
   font-family: 'Space Grotesk', 'Nunito', sans-serif;
   font-size: 0.88rem;
   font-weight: 700;
-  color: #666;
+  color: #ccc;
   line-height: 1.5;
 }
 
@@ -221,7 +221,7 @@
   font-family: 'Space Grotesk', 'Nunito', sans-serif;
   font-size: 1.05rem;
   font-weight: 700;
-  color: #666;
+  color: #ccc;
   margin-bottom: 2rem;
 }
 

@@ -59,6 +59,7 @@ export default function QuizService() {
                 <li>Valfritt antal frågor och ronder</li>
                 <li>Välj kategorier själv</li>
                 <li>Vi kan lägga in personliga frågor om festen/paret</li>
+                <li>Du bestämmer bakgrund, ljudeffekter och stil</li>
                 <li>Levereras digitalt, klart att köra</li>
               </ul>
             </div>
@@ -79,6 +80,7 @@ export default function QuizService() {
                 <li>5 kategorier med 5 frågor vardera</li>
                 <li>Poängsättning och dramatisk final</li>
                 <li>Fungerar för 2–8 lag</li>
+                <li>Du bestämmer bakgrund, ljudeffekter och stil</li>
                 <li>Vi kan leda kvällen eller leverera allt material</li>
               </ul>
             </div>

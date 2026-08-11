@@ -79,7 +79,7 @@
   margin: 0;
 }
 .introSub {
-  color: #666;
+  color: #ccc;
   font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -99,7 +99,7 @@
   font-family: 'Anton', sans-serif;
   font-size: 0.85rem;
   letter-spacing: 0.1em;
-  color: #444;
+  color: #999;
 }
 .questionText {
   font-family: 'Space Grotesk', 'Nunito', sans-serif;
@@ -282,7 +282,7 @@
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #555;
+  color: #999;
   padding: 0.6rem;
   border: 2px solid #1f1f1f;
   transition: color 0.15s, border-color 0.15s;

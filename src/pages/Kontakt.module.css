@@ -78,7 +78,7 @@
   border: 2px solid #333;
   background: #0a0a0a;
   color: var(--white);
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
   font-size: 1rem;
   transition: border-color 0.15s;
   resize: vertical;
@@ -105,6 +105,15 @@
 }
 
 .btnPrimary:hover { background: #e0005f; }
+
+.privacyNote {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: #999;
+  text-align: center;
+}
+.privacyNote a { color: var(--pink); text-decoration: underline; }
 
 .thankYou {
   text-align: center;

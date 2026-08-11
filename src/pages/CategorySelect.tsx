@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import { packs, categoryMeta } from '../data/questions'
+import { packs, categoryMeta, difficultyMeta } from '../data/questions'
 import styles from './CategorySelect.module.css'
 
 export default function CategorySelect() {
@@ -41,16 +41,23 @@ export default function CategorySelect() {
             style={{ '--accent': meta.color } as React.CSSProperties}
           >
             <div className={styles.packTop}>
-              <span
-                className={styles.typeBadge}
-                style={
-                  pack.type === 'jeopardy'
-                    ? { background: meta.color, color: meta.textColor }
-                    : undefined
-                }
-              >
-                {pack.type === 'quiz' ? 'QUIZ' : 'SVARET ÄR!'}
-              </span>
+              <div className={styles.badges}>
+                <span
+                  className={styles.typeBadge}
+                  style={
+                    pack.type === 'jeopardy'
+                      ? { background: meta.color, color: meta.textColor }
+                      : undefined
+                  }
+                >
+                  {pack.type === 'quiz' ? 'QUIZ' : pack.type === 'jeopardy' ? 'SVARET ÄR!' : 'SÅNGFÄLLAN'}
+                </span>
+                {pack.type === 'quiz' && pack.difficulty && (
+                  <span className={styles.difficultyBadge}>
+                    {difficultyMeta[pack.difficulty].label}
+                  </span>
+                )}
+              </div>
               <span className={styles.packArrow}>→</span>
             </div>
             <h2 className={styles.packTitle}>{pack.title}</h2>
@@ -58,7 +65,9 @@ export default function CategorySelect() {
             <p className={styles.packMeta}>
               {pack.type === 'quiz'
                 ? `${pack.questions.length} frågor`
-                : `${pack.categories.length} kategorier · ${pack.points.join(' / ')} poäng`}
+                : pack.type === 'jeopardy'
+                ? `${pack.categories.length} kategorier · ${pack.points.join(' / ')} poäng`
+                : `${pack.songs.length} låtar`}
             </p>
           </Link>
         ))}

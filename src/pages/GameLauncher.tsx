@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { packs } from '../data/questions'
 import QuizGame from './QuizGame'
 import JeopardyGame from './JeopardyGame'
+import SangfallanGame from './SangfallanGame'
 
 export default function GameLauncher() {
   const { category = '', packId = '' } = useParams<{ category: string; packId: string }>()
@@ -18,5 +19,6 @@ export default function GameLauncher() {
   }
 
   if (pack.type === 'quiz') return <QuizGame pack={pack} category={category} />
+  if (pack.type === 'sangfallan') return <SangfallanGame pack={pack} category={category} />
   return <JeopardyGame pack={pack} category={category} />
 }
