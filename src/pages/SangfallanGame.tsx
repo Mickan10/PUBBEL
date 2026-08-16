@@ -85,9 +85,9 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
 
   if (phase === 'setup') return (
     <main className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.bg ?? meta.color } as React.CSSProperties}>
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, '--surface': meta.bg ?? meta.color, background: meta.bg ?? meta.color } as React.CSSProperties}>
       <div className={styles.setupCard}>
-        <span className={styles.badge} style={{ background: meta.color, color: meta.textColor }}>
+        <span className={styles.badge} style={{ background: 'rgba(0,0,0,0.3)', color: meta.textColor }}>
           {meta.label} — Sångfällan
         </span>
         <h1 className={styles.setupTitle}>{pack.title}</h1>
@@ -115,7 +115,7 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
         </div>
 
         <button className={styles.btnStart}
-          style={{ background: meta.color, color: meta.textColor }}
+          style={{ background: meta.textColor, color: meta.bg ?? meta.color }}
           onClick={startGame}>
           Starta spelet →
         </button>
@@ -126,14 +126,14 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
 
   if (phase === 'round') return (
     <main className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.bg ?? meta.color } as React.CSSProperties}>
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, '--surface': meta.bg ?? meta.color, background: meta.bg ?? meta.color } as React.CSSProperties}>
 
       {/* ── SCORE BAR ── */}
       <div className={styles.scoreBar}>
         {teams.map((t, i) => (
           <div key={i} className={styles.scoreTeam}>
             <span className={styles.scoreName}>{t.name}</span>
-            <span className={styles.scorePoints} style={{ color: meta.color }}>{t.score}</span>
+            <span className={styles.scorePoints} style={{ color: meta.textColor }}>{t.score}</span>
           </div>
         ))}
         <div className={styles.scoreRemaining}>
@@ -143,7 +143,7 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
 
       {/* ── ROUND CARD ── */}
       <div className={styles.roundCard}>
-        <p className={styles.pointValue} style={{ color: meta.color }}>{gaveUp ? 0 : pointValue} p</p>
+        <p className={styles.pointValue} style={{ color: meta.textColor }}>{gaveUp ? 0 : pointValue} p</p>
 
         <div className={styles.boxRow}>
           {words.map((word, i) => {
@@ -152,11 +152,11 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
               <button
                 key={i}
                 className={`${styles.box} ${isOpen ? styles.boxOpen : ''}`}
-                style={isOpen ? { borderColor: meta.color } : undefined}
+                style={isOpen ? { borderColor: meta.textColor } : undefined}
                 onClick={() => openBox(i)}
                 disabled={gaveUp}
               >
-                <span className={styles.boxLetter} style={isOpen ? { color: meta.color } : undefined}>
+                <span className={styles.boxLetter} style={isOpen ? { color: meta.textColor } : undefined}>
                   {isOpen ? word : LETTERS[i % LETTERS.length]}
                 </span>
               </button>
@@ -172,7 +172,7 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
 
         {!gaveUp && (
           <button className={styles.revealBtn}
-            style={{ borderColor: meta.color, color: meta.color }}
+            style={{ borderColor: meta.textColor, color: meta.textColor }}
             onClick={giveUp}>
             Ge upp — visa låten
           </button>
@@ -210,7 +210,7 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
               <li>Är det ett lags tur får inget annat lag svara, även om de vet svaret — vänta på er tur!</li>
             </ol>
             <button className={styles.helpStart}
-              style={{ background: meta.color, color: meta.textColor }}
+              style={{ background: meta.textColor, color: meta.bg ?? meta.color }}
               onClick={dismissHelp}>
               Nu kör vi!
             </button>
@@ -237,11 +237,11 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
 
   return (
     <main className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.bg ?? meta.color } as React.CSSProperties}>
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, '--surface': meta.bg ?? meta.color, background: meta.bg ?? meta.color } as React.CSSProperties}>
       <div className={styles.setupCard}>
         <h1 className={styles.setupTitle}>SPELET SLUT!</h1>
         <p className={styles.winnerLine}>
-          Vinnare: <span style={{ color: meta.color }}>{winner.name}</span> med {winner.score} poäng
+          Vinnare: <span style={{ color: meta.textColor }}>{winner.name}</span> med {winner.score} poäng
         </p>
         <p className={styles.funnyLine}>{funnyLine}</p>
         <div className={styles.finalScores}>
@@ -249,14 +249,14 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
             <div key={i} className={`${styles.finalRow} ${i === 0 ? styles.finalRowWinner : ''}`}>
               <span className={styles.finalRank}>{i + 1}.</span>
               <span className={styles.finalName}>{t.name}</span>
-              <span className={styles.finalScore} style={i === 0 ? { color: meta.color } : undefined}>
+              <span className={styles.finalScore} style={i === 0 ? { color: meta.textColor } : undefined}>
                 {t.score} p
               </span>
             </div>
           ))}
         </div>
         <button className={styles.btnStart}
-          style={{ background: meta.color, color: meta.textColor }}
+          style={{ background: meta.textColor, color: meta.bg ?? meta.color }}
           onClick={() => { setTeams([]); setSongIdx(0); setOpened([]); setGaveUp(false); setPhase('setup') }}>
           Spela igen
         </button>

@@ -94,6 +94,13 @@ export default function Home() {
           <h2 className={s.schlatta_title}>SCHL-<br />ÄTTA</h2>
         </Link>
 
+        {/* ── 15 80- & 90-TAL ──────────── 3×1 neon */}
+        <Link to="/quiz/retro" className={`${s.cell} ${s.retro}`}>
+          <div className={s.retro_grid} />
+          <h2 className={s.retro_title}>80- &amp; 90-TAL</h2>
+          <p className={s.retro_sub}>musik · film · nostalgi</p>
+        </Link>
+
       </div>
     </main>
   )

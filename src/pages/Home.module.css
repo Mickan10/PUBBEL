@@ -37,7 +37,8 @@
     "country  varlden   film"
     "sport    sport     historia"
     "musik    mat       vetenskap"
-    "natur    teknik    teknik";
+    "natur    teknik    teknik"
+    "retro    retro     retro";
 }
 
 .disney    { grid-area: disney;    aspect-ratio: 1; }
@@ -52,8 +53,9 @@
 .vetenskap { grid-area: vetenskap; aspect-ratio: 1; }
 .natur     { grid-area: natur;     aspect-ratio: 1; }
 .teknik    { grid-area: teknik;    aspect-ratio: 2 / 1; }
-.genz      { grid-area: genz;      aspect-ratio: 2 / 1; }
+.genz      { grid-area: genz;      aspect-ratio: 1.5 / 1; }
 .schlatta  { grid-area: schlatta;  aspect-ratio: 1; }
+.retro     { grid-area: retro;     aspect-ratio: 5 / 1; }
 
 /* ══════════════════════════════════════════
    BASE CELL
@@ -617,8 +619,8 @@
 
 .genz_title {
   font-family: 'Anton', sans-serif;
-  font-size: clamp(1.3rem, 3.2vw, 2.2rem);
-  line-height: 1.15;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1;
   letter-spacing: 0.02em;
   color: #c084fc;
   position: relative;
@@ -668,6 +670,49 @@
 }
 
 /* ══════════════════════════════════════════
+   15 — 80- & 90-TAL   neon synthwave  (3:1 wide)
+══════════════════════════════════════════ */
+.retro {
+  background: #4a0035;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.retro_grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,245,255,0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,0,229,0.1) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+.retro_title {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: #fff;
+  text-shadow: 0 0 14px rgba(0,245,255,0.9), 0 0 26px rgba(255,0,229,0.45);
+  position: relative;
+  z-index: 2;
+}
+
+.retro_sub {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(0,245,255,0.55);
+  margin-top: 0.4rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media (max-width: 700px) {
@@ -681,11 +726,14 @@
       "film      sport"
       "historia  musik"
       "mat       vetenskap"
-      "natur     teknik";
+      "natur     teknik"
+      "retro     retro";
   }
   .rock, .sport, .teknik, .genz, .schlatta { aspect-ratio: 1; }
+  .retro { aspect-ratio: 2 / 1; }
   .rock_ghost { font-size: clamp(5rem, 18vw, 10rem); }
   .sport_circle { width: 80%; right: -10%; }
+  .genz_title { font-size: clamp(1.3rem, 3.2vw, 2.2rem); line-height: 1.15; }
 }
 
 @media (max-width: 420px) {

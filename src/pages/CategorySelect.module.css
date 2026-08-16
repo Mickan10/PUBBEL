@@ -14,6 +14,8 @@
   color: var(--accent-text);
   line-height: 0.9;
   margin-bottom: 0.5rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .heroSub {
   font-family: 'Space Grotesk', 'Nunito', sans-serif;
@@ -125,6 +127,8 @@
   color: #fff;
   letter-spacing: 0.04em;
   margin-bottom: 0.4rem;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .packDesc {

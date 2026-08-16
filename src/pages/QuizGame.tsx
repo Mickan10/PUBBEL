@@ -52,7 +52,7 @@ export default function QuizGame({ pack, category }: { pack: QuizPack; category:
   return (
     <main
       className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.bg ?? meta.color } as React.CSSProperties}
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, '--surface': meta.bg ?? meta.color, background: meta.bg ?? meta.color } as React.CSSProperties}
     >
       {phase !== 'intro' && (
         <div className={styles.progressTrack}>
@@ -63,12 +63,12 @@ export default function QuizGame({ pack, category }: { pack: QuizPack; category:
       {/* INTRO */}
       {phase === 'intro' && (
         <div className={styles.card}>
-          <span className={styles.badge} style={{ background: meta.color, color: meta.textColor }}>
+          <span className={styles.badge} style={{ background: 'rgba(0,0,0,0.3)', color: meta.textColor }}>
             {meta.label}
           </span>
           <h1 className={styles.introTitle}>{pack.title.toUpperCase()}</h1>
           <p className={styles.introSub}>{pack.desc}</p>
-          <button className={styles.btnStart} style={{ background: meta.color, color: meta.textColor }}
+          <button className={styles.btnStart} style={{ background: meta.textColor, color: meta.bg ?? meta.color }}
             onClick={() => setPhase('question')}>
             Starta →
           </button>
@@ -117,14 +117,14 @@ export default function QuizGame({ pack, category }: { pack: QuizPack; category:
         <div className={styles.card}>
           <h2 className={styles.resultTitle}>{scoreLabel(pct)}</h2>
           <p className={styles.resultScore}>
-            <span style={{ color: meta.color }}>{score}</span> av {qs.length} rätt
+            <span style={{ color: meta.textColor }}>{score}</span> av {qs.length} rätt
           </p>
           <div className={styles.scoreBar}>
-            <div className={styles.scoreBarFill} style={{ width: `${pct}%`, background: meta.color }} />
+            <div className={styles.scoreBarFill} style={{ width: `${pct}%`, background: meta.textColor }} />
           </div>
           <p className={styles.scorePct}>{pct}%</p>
           <div className={styles.resultActions}>
-            <button className={styles.btnStart} style={{ background: meta.color, color: meta.textColor }}
+            <button className={styles.btnStart} style={{ background: meta.textColor, color: meta.bg ?? meta.color }}
               onClick={restart}>Spela igen</button>
             <Link to={`/quiz/${category}`} className={styles.btnBack}>← Välj annat quiz</Link>
           </div>

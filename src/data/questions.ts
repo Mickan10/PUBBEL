@@ -41,7 +41,7 @@ export type JeopardyPack = {
 }
 
 export type SongMystery = {
-  line: string    // en kort rad ur låten — delas upp i rutor A–E, ett ord/en bit i taget
+  line: string
   song: string
   artist: string
 }
@@ -75,6 +75,7 @@ export const categoryMeta: Record<string, { label: string; color: string; bg?: s
   vetenskap: { label: 'Vetenskap',   color: '#00CCDD', textColor: '#111' },
   natur:     { label: 'Natur',       color: '#00C49A', textColor: '#111' },
   teknik:    { label: 'Teknik',      color: '#a855f7', textColor: '#fff' },
+  retro:     { label: '80- & 90-tal', color: '#00F5FF', bg: '#4a0035', textColor: '#fff' },
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -1241,6 +1242,69 @@ export const packs: Record<string, Pack[]> = {
         { q: 'Vad kallas praxisen att lura användare att lämna ut känslig information via falska mejl/sidor?', options: ['Spoofing', 'Phishing', 'Hacking', 'Cracking'], answer: 1 },
         { q: 'Vilket företag utvecklade programmeringsspråket Java?', options: ['Microsoft', 'IBM', 'Sun Microsystems', 'Oracle'], answer: 2 },
         { q: 'Vad betyder förkortningen "URL"?', options: ['Universal Resource Locator', 'Uniform Resource Locator', 'Unified Reference Link', 'Universal Reference Locator'], answer: 1 },
+      ],
+    },
+  ],
+
+  // ══════════════════════════════════════════════════════════
+  // 80- & 90-TAL
+  // ══════════════════════════════════════════════════════════
+  retro: [
+    {
+      id: 'klassiker',
+      title: '80- och 90-talsklassiker',
+      desc: 'Musik, filmer och prylar alla känner igen',
+      type: 'quiz',
+      difficulty: 'lätt',
+      questions: [
+        { q: 'Vilket företag lanserade spelkonsolen NES 1985?', options: ['Sega', 'Nintendo', 'Atari', 'Sony'], answer: 1 },
+        { q: 'Vem gav ut albumet "Thriller"?', options: ['Prince', 'Michael Jackson', 'Stevie Wonder', 'Lionel Richie'], answer: 1 },
+        { q: 'Vilken Spielberg-film om dinosaurier kom 1993?', options: ['Jurassic Park', 'King Kong', 'Godzilla', 'The Lost World'], answer: 0 },
+        { q: 'Vilken sitcom om sex vänner i New York hade premiär 1994?', options: ['Seinfeld', 'Friends', 'Frasier', 'Cheers'], answer: 1 },
+        { q: 'Vilket företag lanserade Game Boy 1989?', options: ['Sega', 'Sony', 'Nintendo', 'Atari'], answer: 2 },
+        { q: 'Vilken filmserie om tidsresor med en DeLorean-bil startade 1985?', options: ['Tillbaka till framtiden', 'Terminator', 'Matrix', 'Men in Black'], answer: 0 },
+        { q: 'Vilket svenskt band hade stora hits internationellt på 90-talet med bland annat "All That She Wants"?', options: ['Roxette', 'Ace of Base', 'Europe', 'The Cardigans'], answer: 1 },
+        { q: 'Vilken tv-serie med Will Smith handlar om en kille från Philadelphia som flyttar till en rik familj?', options: ['The Fresh Prince of Bel-Air', 'Full House', 'Family Matters', 'Saved by the Bell'], answer: 0 },
+        { q: 'Vilken tecknad TV-serie om familjen Simpson hade premiär 1989?', options: ['Familjen Flinta', 'Simpsons', 'South Park', 'King of the Hill'], answer: 1 },
+        { q: 'Vilket pusselspel i kubform blev en stor trend på 80-talet?', options: ["Rubik's kub", 'Tetris', 'Jenga', 'Puzzle Ball'], answer: 0 },
+      ],
+    },
+    {
+      id: 'nostalgi',
+      title: 'Nittiotalsnostalgi',
+      desc: 'Prylar, artister och tv-serier från en svunnen tid',
+      type: 'quiz',
+      difficulty: 'mellan',
+      questions: [
+        { q: 'Vilken bärbar kassettspelare från Sony blev en symbol för 80-talet?', options: ['Discman', 'Walkman', 'Boombox', 'MiniDisc'], answer: 1 },
+        { q: 'Vilket år hade Simpsons premiär som egen serie?', options: ['1987', '1989', '1991', '1993'], answer: 1 },
+        { q: 'Vilken Tom Cruise-film om jaktflygare kom 1986?', options: ['Top Gun', 'Days of Thunder', 'A Few Good Men', 'Rain Man'], answer: 0 },
+        { q: 'Från vilket land kommer leksaken/appen Tamagotchi?', options: ['Kina', 'Sydkorea', 'Japan', 'USA'], answer: 2 },
+        { q: 'Vem sjunger "Like a Virgin"?', options: ['Cyndi Lauper', 'Madonna', 'Whitney Houston', 'Tina Turner'], answer: 1 },
+        { q: 'Vilket år kom filmen Titanic med Leonardo DiCaprio och Kate Winslet?', options: ['1995', '1996', '1997', '1998'], answer: 2 },
+        { q: 'Vilken TV-serie handlar om FBI-agenterna Mulder och Scully som utreder övernaturliga fall?', options: ['Arkiv X', 'Twin Peaks', 'Millennium', 'Akte X'], answer: 0 },
+        { q: 'Vilket spelbolag skapade Super Mario?', options: ['Sega', 'Capcom', 'Nintendo', 'Konami'], answer: 2 },
+        { q: 'Vilket år blev World Wide Web tillgängligt för allmänheten?', options: ['1989', '1991', '1993', '1995'], answer: 1 },
+        { q: 'Vilken grön ninja-sköldpaddsgäng med förkärlek för pizza var enormt populärt på 90-talet?', options: ['Teenage Mutant Ninja Turtles', 'Biker Mice from Mars', 'Street Sharks', 'Extreme Dinosaurs'], answer: 0 },
+      ],
+    },
+    {
+      id: 'experten',
+      title: 'Retro-experten',
+      desc: 'Årtal, prylar och detaljer för de riktiga 80/90-talsnördarna',
+      type: 'quiz',
+      difficulty: 'svårt',
+      questions: [
+        { q: 'Vilket år grundades musikkanalen MTV?', options: ['1979', '1981', '1983', '1985'], answer: 1 },
+        { q: 'Vilken var den första kommersiellt tillgängliga mobiltelefonen, lanserad 1983?', options: ['Nokia Cityman', 'Motorola DynaTAC', 'Ericsson Hotline', 'Motorola StarTAC'], answer: 1 },
+        { q: 'Vilket arkadspel med en gul figur som äter prickar och undviker spöken lanserades 1980?', options: ['Donkey Kong', 'Pac-Man', 'Space Invaders', 'Frogger'], answer: 1 },
+        { q: 'Vilket år upplöstes Sovjetunionen?', options: ['1989', '1990', '1991', '1992'], answer: 2 },
+        { q: 'Vilket skomärke blev ikoniskt på 80-talet tack vare Michael Jordan?', options: ['Air Jordan (Nike)', 'Reebok Pump', 'Adidas Torsion', 'Puma Suede'], answer: 0 },
+        { q: 'Vilket spel följde med i lådan när den första Game Boyn lanserades 1989?', options: ['Super Mario Land', 'Tetris', 'Pokémon Red', 'Dr. Mario'], answer: 1 },
+        { q: 'Vilken var en av de första allmänt kända webbläsarna på 90-talet?', options: ['Internet Explorer', 'Netscape Navigator', 'Mosaic Pro', 'Opera'], answer: 1 },
+        { q: 'Vilket år arrangerades de första "Extreme Games" (senare X Games)?', options: ['1993', '1995', '1997', '1999'], answer: 1 },
+        { q: 'Vilket svenskt rockband låg bakom hitlåten "The Final Countdown" (1986)?', options: ['Roxette', 'Europe', 'Ace of Base', 'Yngwie Malmsteen'], answer: 1 },
+        { q: 'Vad hette Nirvana-albumet från 1991 som blev grunge-genombrottet?', options: ['In Utero', 'Bleach', 'Nevermind', 'MTV Unplugged in New York'], answer: 2 },
       ],
     },
   ],

@@ -83,9 +83,9 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
 
   if (phase === 'setup') return (
     <main className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.bg ?? meta.color } as React.CSSProperties}>
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, '--surface': meta.bg ?? meta.color, background: meta.bg ?? meta.color } as React.CSSProperties}>
       <div className={styles.setupCard}>
-        <span className={styles.badge} style={{ background: meta.color, color: meta.textColor }}>
+        <span className={styles.badge} style={{ background: 'rgba(0,0,0,0.3)', color: meta.textColor }}>
           {meta.label} — Svaret är!
         </span>
         <h1 className={styles.setupTitle}>{pack.title}</h1>
@@ -113,7 +113,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
         </div>
 
         <button className={styles.btnStart}
-          style={{ background: meta.color, color: meta.textColor }}
+          style={{ background: meta.textColor, color: meta.bg ?? meta.color }}
           onClick={startGame}>
           Starta spelet →
         </button>
@@ -124,7 +124,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
 
   if (phase === 'board' || phase === 'clue') return (
     <main className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.bg ?? meta.color } as React.CSSProperties}>
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, '--surface': meta.bg ?? meta.color, background: meta.bg ?? meta.color } as React.CSSProperties}>
 
       {/* ── BOARD AREA (score + grid) ── */}
       <div className={styles.boardArea}>
@@ -133,7 +133,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
           {teams.map((t, i) => (
             <div key={i} className={styles.scoreTeam}>
               <span className={styles.scoreName}>{t.name}</span>
-              <span className={styles.scorePoints} style={{ color: meta.color }}>{t.score}</span>
+              <span className={styles.scorePoints} style={{ color: meta.textColor }}>{t.score}</span>
             </div>
           ))}
           <div className={styles.scoreRemaining}>
@@ -181,7 +181,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
               <li>Välj vilket lag som svarade rätt — eller "Ingen fick det" om inget lag svarade rätt.</li>
             </ol>
             <button className={styles.helpStart}
-              style={{ background: meta.color, color: meta.textColor }}
+              style={{ background: meta.textColor, color: meta.bg ?? meta.color }}
               onClick={dismissHelp}>
               Nu kör vi!
             </button>
@@ -197,7 +197,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
               <span className={styles.clueCategory}>
                 {pack.categories[activeCell.catIdx].name}
               </span>
-              <span className={styles.cluePoints} style={{ color: meta.color }}>
+              <span className={styles.cluePoints} style={{ color: meta.textColor }}>
                 {pack.points[activeCell.clueIdx]} p
               </span>
             </div>
@@ -214,7 +214,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
 
             {!showAnswer && (
               <button className={styles.revealBtn}
-                style={{ borderColor: meta.color, color: meta.color }}
+                style={{ borderColor: meta.textColor, color: meta.textColor }}
                 onClick={() => setShowAnswer(true)}>
                 Visa rätt fråga
               </button>
@@ -258,11 +258,11 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
 
   return (
     <main className={styles.wrapper}
-      style={{ '--accent': meta.color, '--accent-text': meta.textColor, background: meta.bg ?? meta.color } as React.CSSProperties}>
+      style={{ '--accent': meta.color, '--accent-text': meta.textColor, '--surface': meta.bg ?? meta.color, background: meta.bg ?? meta.color } as React.CSSProperties}>
       <div className={styles.setupCard}>
         <h1 className={styles.setupTitle}>SPELET SLUT!</h1>
         <p className={styles.winnerLine}>
-          Vinnare: <span style={{ color: meta.color }}>{winner.name}</span> med {winner.score} poäng
+          Vinnare: <span style={{ color: meta.textColor }}>{winner.name}</span> med {winner.score} poäng
         </p>
         <p className={styles.funnyLine}>{funnyLine}</p>
         <div className={styles.finalScores}>
@@ -270,14 +270,14 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
             <div key={i} className={`${styles.finalRow} ${i === 0 ? styles.finalRowWinner : ''}`}>
               <span className={styles.finalRank}>{i + 1}.</span>
               <span className={styles.finalName}>{t.name}</span>
-              <span className={styles.finalScore} style={i === 0 ? { color: meta.color } : undefined}>
+              <span className={styles.finalScore} style={i === 0 ? { color: meta.textColor } : undefined}>
                 {t.score} p
               </span>
             </div>
           ))}
         </div>
         <button className={styles.btnStart}
-          style={{ background: meta.color, color: meta.textColor }}
+          style={{ background: meta.textColor, color: meta.bg ?? meta.color }}
           onClick={() => { setTeams([]); setUsed(new Set()); setPhase('setup') }}>
           Spela igen
         </button>

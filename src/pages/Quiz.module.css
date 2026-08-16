@@ -34,8 +34,8 @@
    CARD
 ══════════════════════════════════════ */
 .card {
-  background: #111;
-  border: 2px solid #1f1f1f;
+  background: var(--surface);
+  border: 2px solid color-mix(in srgb, var(--accent-text) 20%, transparent);
   border-top: 3px solid var(--accent);
   width: 100%;
   max-width: 600px;
@@ -75,11 +75,13 @@
   font-family: 'Anton', sans-serif;
   font-size: clamp(2.5rem, 8vw, 4.5rem);
   line-height: 0.9;
-  color: var(--accent);
+  color: var(--accent-text);
   margin: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .introSub {
-  color: #ccc;
+  color: color-mix(in srgb, var(--accent-text) 75%, transparent);
   font-size: 0.95rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -99,13 +101,13 @@
   font-family: 'Anton', sans-serif;
   font-size: 0.85rem;
   letter-spacing: 0.1em;
-  color: #999;
+  color: color-mix(in srgb, var(--accent-text) 65%, transparent);
 }
 .questionText {
   font-family: 'Space Grotesk', 'Nunito', sans-serif;
   font-size: clamp(1.2rem, 3.5vw, 1.6rem);
   font-weight: 800;
-  color: #fff;
+  color: var(--accent-text);
   line-height: 1.4;
   margin: 0;
 }
@@ -122,9 +124,9 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  background: #191919;
-  border: 2px solid #2a2a2a;
-  color: #ddd;
+  background: rgba(0,0,0,0.22);
+  border: 2px solid color-mix(in srgb, var(--accent-text) 22%, transparent);
+  color: var(--accent-text);
   padding: 1.1rem 1.25rem;
   cursor: pointer;
   text-align: left;
@@ -139,13 +141,13 @@
 
 @media (hover: hover) {
   .option:hover:not(:disabled) {
-    border-color: var(--accent);
-    background: #1f1f1f;
-    color: #fff;
+    border-color: var(--accent-text);
+    background: rgba(0,0,0,0.35);
+    color: var(--accent-text);
   }
   .option:hover:not(:disabled) .optionLetter {
-    background: var(--accent);
-    color: var(--accent-text);
+    background: var(--accent-text);
+    color: var(--surface);
   }
 }
 
@@ -158,8 +160,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #2a2a2a;
-  color: #888;
+  background: rgba(0,0,0,0.3);
+  color: color-mix(in srgb, var(--accent-text) 75%, transparent);
   flex-shrink: 0;
   transition: background 0.12s, color 0.12s;
 }
@@ -215,7 +217,7 @@
 .resultTitle {
   font-family: 'Anton', sans-serif;
   font-size: clamp(2rem, 6vw, 3.5rem);
-  color: #fff;
+  color: var(--accent-text);
   text-align: center;
   margin: 0;
 }
@@ -224,7 +226,7 @@
   font-family: 'Space Grotesk', 'Nunito', sans-serif;
   font-size: 1.1rem;
   font-weight: 800;
-  color: #888;
+  color: color-mix(in srgb, var(--accent-text) 70%, transparent);
   margin: 0;
 }
 .resultScore span {
@@ -233,7 +235,7 @@
 }
 .scoreBar {
   height: 8px;
-  background: #222;
+  background: rgba(0,0,0,0.3);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -246,7 +248,7 @@
   text-align: center;
   font-family: 'Anton', sans-serif;
   font-size: 1.2rem;
-  color: var(--accent);
+  color: var(--accent-text);
   letter-spacing: 0.08em;
   margin: 0;
 }
@@ -282,14 +284,14 @@
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #999;
+  color: color-mix(in srgb, var(--accent-text) 65%, transparent);
   padding: 0.6rem;
-  border: 2px solid #1f1f1f;
+  border: 2px solid color-mix(in srgb, var(--accent-text) 25%, transparent);
   transition: color 0.15s, border-color 0.15s;
 }
 .btnBack:hover {
-  color: #fff;
-  border-color: #444;
+  color: var(--accent-text);
+  border-color: var(--accent-text);
 }
 
 /* ══════════════════════════════════════
