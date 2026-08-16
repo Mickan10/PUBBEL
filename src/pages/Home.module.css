@@ -690,12 +690,13 @@
 }
 
 .retro_title {
-  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  font-family: 'Anton', sans-serif;
   font-size: clamp(2.2rem, 6vw, 4.5rem);
   line-height: 1;
   letter-spacing: 0.04em;
-  color: #fff;
-  text-shadow: 0 0 14px rgba(0,245,255,0.9), 0 0 26px rgba(255,0,229,0.45);
+  color: #0a0007;
+  -webkit-text-stroke: 1.5px rgba(255,0,229,0.7);
+  text-shadow: 0 0 18px rgba(255,0,229,0.7);
   position: relative;
   z-index: 2;
 }
@@ -706,7 +707,7 @@
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: rgba(0,245,255,0.55);
+  color: rgba(255,0,229,0.75);
   margin-top: 0.4rem;
   position: relative;
   z-index: 2;
