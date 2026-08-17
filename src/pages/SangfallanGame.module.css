@@ -252,6 +252,8 @@
   flex-direction: column;
   gap: 0.4rem;
   width: 100%;
+  max-height: 9rem;
+  overflow-y: auto;
 }
 .hintLine {
   font-family: 'Space Grotesk', 'Nunito', sans-serif;

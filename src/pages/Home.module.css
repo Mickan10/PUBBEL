@@ -41,17 +41,20 @@
     "retro    retro     retro";
 }
 
-.disney    { grid-area: disney;    aspect-ratio: 1; }
+/* disney/historia/natur delar rad med en dubbelbred 2:1-ruta (rock/sport/teknik) —
+   de har ingen egen aspect-ratio utan sträcks till samma höjd som radgrannen,
+   så raden aldrig kan bli för kort om den breda rutans ratio ändras */
+.disney    { grid-area: disney; }
 .rock      { grid-area: rock;      aspect-ratio: 2 / 1; }
 .country   { grid-area: country;   aspect-ratio: 1; }
 .varlden   { grid-area: varlden;   aspect-ratio: 1; }
 .film      { grid-area: film;      aspect-ratio: 1; }
 .sport     { grid-area: sport;     aspect-ratio: 2 / 1; }
-.historia  { grid-area: historia;  aspect-ratio: 1; }
+.historia  { grid-area: historia; }
 .musik     { grid-area: musik;     aspect-ratio: 1; }
 .mat       { grid-area: mat;       aspect-ratio: 1; }
 .vetenskap { grid-area: vetenskap; aspect-ratio: 1; }
-.natur     { grid-area: natur;     aspect-ratio: 1; }
+.natur     { grid-area: natur; }
 .teknik    { grid-area: teknik;    aspect-ratio: 2 / 1; }
 .genz      { grid-area: genz;      aspect-ratio: 1.5 / 1; }
 .schlatta  { grid-area: schlatta; }
@@ -730,7 +733,7 @@
       "natur     teknik"
       "retro     retro";
   }
-  .rock, .sport, .teknik, .genz, .schlatta { aspect-ratio: 1; }
+  .rock, .sport, .teknik, .genz, .schlatta, .disney, .historia, .natur { aspect-ratio: 1; }
   .retro { aspect-ratio: 2 / 1; }
   .rock_ghost { font-size: clamp(5rem, 18vw, 10rem); }
   .sport_circle { width: 80%; right: -10%; }
