@@ -33,6 +33,14 @@ body { min-height: 100vh; }
 
 a { text-decoration: none; color: inherit; }
 
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--yellow);
+  outline-offset: 3px;
+}
+
 ul { list-style: none; }
 
 h1, h2, h3, h4 {

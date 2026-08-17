@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { JeopardyPack, categoryMeta } from '../data/questions'
+import { blurActiveElement } from '../utils'
 import styles from './JeopardyGame.module.css'
 
 type Phase = 'setup' | 'board' | 'clue' | 'finished'
@@ -53,6 +54,7 @@ export default function JeopardyGame({ pack, category }: { pack: JeopardyPack; c
 
   function closeClue() {
     if (!activeCell) return
+    blurActiveElement()
     setUsed(prev => new Set(prev).add(cellKey(activeCell.catIdx, activeCell.clueIdx)))
     setActiveCell(null)
     setShowAnswer(false)

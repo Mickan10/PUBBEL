@@ -164,3 +164,14 @@
   .hero { padding: 2rem 1.25rem 1.5rem; }
   .packCard { padding: 1.25rem 1rem; }
 }
+
+/* ══ TV / MYCKET BREDA SKÄRMAR ══ */
+@media (min-width: 1600px) {
+  .heroTitle { font-size: clamp(4rem, 5vw, 6.5rem); }
+  .heroSub { font-size: 1.1rem; }
+  .packList { grid-template-columns: repeat(4, 1fr); max-width: 1900px; }
+  .packCard { padding: 2.25rem 2rem; }
+  .packTitle { font-size: clamp(1.8rem, 2vw, 2.5rem); }
+  .packDesc { font-size: 1.1rem; }
+  .typeBadge, .difficultyBadge, .packMeta { font-size: 0.85rem; }
+}

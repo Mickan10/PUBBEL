@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { QuizPack, categoryMeta } from '../data/questions'
+import { blurActiveElement } from '../utils'
 import styles from './Quiz.module.css'
 
 type Phase = 'intro' | 'question' | 'answer' | 'finished'
@@ -25,12 +26,12 @@ export default function QuizGame({ pack, category }: { pack: QuizPack; category:
 
   const pickAnswer = useCallback((i: number) => {
     if (phase !== 'question') return
-    ;(document.activeElement as HTMLElement)?.blur()
+    blurActiveElement()
     setSelected(i)
     if (i === qs[current].answer) setScore(s => s + 1)
     setPhase('answer')
     setTimeout(() => {
-      ;(document.activeElement as HTMLElement)?.blur()
+      blurActiveElement()
       if (current + 1 < qs.length) {
         setCurrent(c => c + 1)
         setSelected(null)

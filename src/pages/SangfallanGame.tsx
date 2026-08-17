@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { SongPack, categoryMeta } from '../data/questions'
+import { blurActiveElement } from '../utils'
 import styles from './SangfallanGame.module.css'
 
 type Phase = 'setup' | 'round' | 'finished'
@@ -52,6 +53,7 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
   function giveUp() { setGaveUp(true) }
 
   function nextSong() {
+    blurActiveElement()
     const next = songIdx + 1
     if (next >= pack.songs.length) {
       setPhase('finished')

@@ -467,3 +467,24 @@
   .box { min-width: 3rem; height: 3rem; }
   .boxLetter { font-size: 1.3rem; }
 }
+
+/* ══ TV / MYCKET BREDA SKÄRMAR ══ */
+@media (min-width: 1600px) {
+  .setupCard { max-width: 720px; padding: 3.5rem 3rem; }
+  .badge { font-size: 0.9rem; }
+  .setupTitle { font-size: clamp(3.5rem, 4.5vw, 5rem); }
+  .setupDesc { font-size: 1.2rem; }
+  .teamInput { font-size: 1.2rem; padding: 0.8rem 1rem; }
+  .btnStart { font-size: 1.4rem; padding: 1.1rem 2.5rem; }
+
+  .scoreBar, .roundCard { max-width: 1300px; }
+  .scoreName { font-size: 0.9rem; }
+  .scorePoints { font-size: 2rem; }
+  .pointValue { font-size: clamp(2.5rem, 3vw, 3.5rem); }
+  .box { min-width: clamp(6rem, 7vw, 8rem); height: clamp(6rem, 7vw, 8rem); }
+  .boxLetter { font-size: clamp(2.4rem, 3vw, 3.4rem); }
+  .hintLine { font-size: 1.1rem; }
+  .songReveal { font-size: clamp(1.4rem, 1.8vw, 1.8rem); }
+  .revealBtn { font-size: 1.1rem; padding: 0.85rem 2rem; }
+  .teamBtn { font-size: 1.1rem; padding: 0.8rem 1.5rem; }
+}

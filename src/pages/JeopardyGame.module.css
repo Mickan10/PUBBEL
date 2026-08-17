@@ -495,3 +495,26 @@
   .clueActions { gap: 0.4rem; }
   .teamBtn { padding: 0.5rem 0.9rem; font-size: 0.75rem; min-width: 80px; }
 }
+
+/* ══ TV / MYCKET BREDA SKÄRMAR ══ */
+@media (min-width: 1600px) {
+  .setupCard { max-width: 720px; padding: 3.5rem 3rem; }
+  .badge { font-size: 0.9rem; }
+  .setupTitle { font-size: clamp(3.5rem, 4.5vw, 5rem); }
+  .setupDesc { font-size: 1.2rem; }
+  .teamInput { font-size: 1.2rem; padding: 0.8rem 1rem; }
+  .btnStart { font-size: 1.4rem; padding: 1.1rem 2.5rem; }
+
+  .scoreBar, .boardArea, .board { max-width: 1500px; }
+  .scoreName { font-size: 0.9rem; }
+  .scorePoints { font-size: 2rem; }
+  .categoryHeader { font-size: clamp(0.9rem, 1.2vw, 1.2rem); padding: 1.1rem 0.5rem; }
+  .cell { font-size: clamp(1.8rem, 2.2vw, 2.8rem); }
+
+  .clueCard { max-width: 780px; padding: 2.75rem; }
+  .clueCategory { font-size: 1rem; }
+  .cluePoints { font-size: 2rem; }
+  .clueText { font-size: clamp(1.5rem, 1.8vw, 2rem); }
+  .revealBtn { font-size: 1.1rem; padding: 0.85rem 2rem; }
+  .teamBtn { font-size: 1.1rem; padding: 0.8rem 1.5rem; }
+}
