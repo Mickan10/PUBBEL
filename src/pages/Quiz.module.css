@@ -318,3 +318,9 @@
   .card { padding: 2rem 1.25rem; gap: 1.25rem; }
   .option { padding: 0.9rem 1rem; font-size: 0.95rem; }
 }
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .wrapper { min-height: 100vh; padding: 1rem; }
+  .card { padding: 1.25rem 1.5rem; gap: 1rem; max-height: 96vh; overflow-y: auto; }
+  .progressTrack { top: 0; }
+}

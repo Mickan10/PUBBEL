@@ -74,6 +74,10 @@
 .openBtn span:nth-child(2) { opacity: 0; }
 .openBtn span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
+@media (orientation: landscape) and (max-height: 500px) {
+  .navbar { display: none; }
+}
+
 @media (max-width: 640px) {
   .hamburger { display: flex; }
 
