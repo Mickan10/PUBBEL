@@ -54,7 +54,7 @@
 .natur     { grid-area: natur;     aspect-ratio: 1; }
 .teknik    { grid-area: teknik;    aspect-ratio: 2 / 1; }
 .genz      { grid-area: genz;      aspect-ratio: 1.5 / 1; }
-.schlatta  { grid-area: schlatta;  aspect-ratio: 1; }
+.schlatta  { grid-area: schlatta; }
 .retro     { grid-area: retro;     aspect-ratio: 5 / 1; }
 
 /* ══════════════════════════════════════════
@@ -683,7 +683,7 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(rgba(0,245,255,0.16) 1px, transparent 1px),
+    linear-gradient(rgba(255,0,229,0.16) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255,0,229,0.1) 1px, transparent 1px);
   background-size: 28px 28px;
   pointer-events: none;

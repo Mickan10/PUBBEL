@@ -164,6 +164,14 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
           })}
         </div>
 
+        {opened.length > 0 && (
+          <div className={styles.hintList}>
+            {opened.map(i => (
+              <p key={i} className={styles.hintLine}>{song.hints[i]}</p>
+            ))}
+          </div>
+        )}
+
         {gaveUp && (
           <p className={styles.songReveal}>
             {song.song} — {song.artist}
@@ -204,7 +212,7 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
             <h2 className={styles.helpTitle}>Så funkar det</h2>
             <ol className={styles.helpList}>
               <li>En rad ur en låt döljs bakom rutor, ett ord i taget — sjung eller säg vilken låt det är!</li>
-              <li>Klicka på en ruta för att avslöja det ordet — men färre öppnade rutor ger fler poäng.</li>
+              <li>Klicka på en ruta för att avslöja ordet plus en klurig ledtråd om låten — men färre öppnade rutor ger fler poäng.</li>
               <li>Klicka på en redan öppnad ruta igen för att ge upp och visa rätt låt direkt.</li>
               <li>Gissa vilken låt det är — välj vilket lag som gissade rätt, eller "Ingen fick det".</li>
               <li>Är det ett lags tur får inget annat lag svara, även om de vet svaret — vänta på er tur!</li>
