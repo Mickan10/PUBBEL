@@ -484,7 +484,7 @@
 
 /* ══ LIGGANDE MOBIL ══ */
 @media (orientation: landscape) and (max-height: 500px) {
-  .wrapper { height: 100vh; }
+  .wrapper { height: 100vh; height: 100dvh; }
   .clueCard {
     max-height: 92vh;
     overflow-y: auto;

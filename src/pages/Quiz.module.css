@@ -320,7 +320,7 @@
 }
 
 @media (orientation: landscape) and (max-height: 500px) {
-  .wrapper { min-height: 100vh; padding: 1rem; }
+  .wrapper { min-height: 100vh; min-height: 100dvh; padding: 1rem; }
   .card { padding: 1.25rem 1.5rem; gap: 1rem; max-height: 96vh; overflow-y: auto; }
   .progressTrack { top: 0; }
 }
