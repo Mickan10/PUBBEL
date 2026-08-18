@@ -247,24 +247,15 @@
   .boxLetter { font-size: clamp(1.6rem, 2.4vw, 2.4rem); }
 }
 
-.hintList {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  width: 100%;
-  max-height: 9rem;
-  overflow-y: auto;
-}
-.hintLine {
+.hintText {
   font-family: 'Space Grotesk', 'Nunito', sans-serif;
-  font-size: clamp(0.85rem, 1.6vw, 1rem);
-  font-weight: 700;
-  font-style: italic;
-  color: color-mix(in srgb, var(--accent-text) 80%, transparent);
-  background: rgba(0,0,0,0.18);
-  border-left: 3px solid color-mix(in srgb, var(--accent-text) 40%, transparent);
-  padding: 0.5rem 0.75rem;
+  font-size: clamp(1.2rem, 3.5vw, 1.6rem);
+  font-weight: 800;
+  color: var(--accent-text);
+  line-height: 1.4;
+  text-align: center;
   margin: 0;
+  width: 100%;
   animation: fadeIn 0.2s ease;
 }
 
@@ -485,7 +476,7 @@
   .pointValue { font-size: clamp(2.5rem, 3vw, 3.5rem); }
   .box { min-width: clamp(6rem, 7vw, 8rem); height: clamp(6rem, 7vw, 8rem); }
   .boxLetter { font-size: clamp(2.4rem, 3vw, 3.4rem); }
-  .hintLine { font-size: 1.1rem; }
+  .hintText { font-size: 1.6rem; }
   .songReveal { font-size: clamp(1.4rem, 1.8vw, 1.8rem); }
   .revealBtn { font-size: 1.1rem; padding: 0.85rem 2rem; }
   .teamBtn { font-size: 1.1rem; padding: 0.8rem 1.5rem; }

@@ -166,12 +166,8 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
           })}
         </div>
 
-        {opened.length > 0 && (
-          <div className={styles.hintList}>
-            {opened.map(i => (
-              <p key={i} className={styles.hintLine}>{song.hints[i]}</p>
-            ))}
-          </div>
+        {!gaveUp && opened.length > 0 && (
+          <p className={styles.hintText}>{song.hints[opened[opened.length - 1]]}</p>
         )}
 
         {gaveUp && (
