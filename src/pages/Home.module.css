@@ -38,6 +38,8 @@
     "sport    sport     historia"
     "musik    mat       vetenskap"
     "natur    teknik    teknik"
+    "damer    damer     citat"
+    "livs     dejt      dejt"
     "retro    retro     retro";
 }
 
@@ -58,6 +60,10 @@
 .teknik    { grid-area: teknik;    aspect-ratio: 2 / 1; }
 .genz      { grid-area: genz;      aspect-ratio: 1.5 / 1; }
 .schlatta  { grid-area: schlatta; }
+.damer     { grid-area: damer;     aspect-ratio: 2 / 1; }
+.citat     { grid-area: citat;     aspect-ratio: 1; }
+.livs      { grid-area: livs;      aspect-ratio: 1; }
+.dejt      { grid-area: dejt;      aspect-ratio: 2 / 1; }
 .retro     { grid-area: retro;     aspect-ratio: 5 / 1; }
 
 /* ══════════════════════════════════════════
@@ -96,6 +102,35 @@
   padding: 0.15rem 0.45rem;
   z-index: 5;
   backdrop-filter: blur(2px);
+}
+
+/* shared playful "sticker" badge + marker-highlight — reusable across tiles */
+.sticker {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  background: #fff;
+  color: #111;
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  transform: rotate(-6deg);
+  z-index: 3;
+  box-shadow: 3px 3px 0 rgba(0,0,0,0.2);
+}
+
+.highlight {
+  background: var(--yellow);
+  color: #111;
+  padding: 0 0.15em;
+  display: inline-block;
+  transform: rotate(-2deg);
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 /* ══════════════════════════════════════════
@@ -397,6 +432,18 @@
   z-index: 2;
 }
 
+.hist_sub {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.55);
+  margin-top: 0.35rem;
+  z-index: 2;
+  position: relative;
+}
+
 /* ══════════════════════════════════════════
    8 — MUSIK   red / white
 ══════════════════════════════════════════ */
@@ -467,6 +514,18 @@
   text-transform: uppercase;
   position: relative;
   z-index: 2;
+}
+
+.mat_sub {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.65);
+  margin-top: 0.3rem;
+  z-index: 2;
+  position: relative;
 }
 
 /* ══════════════════════════════════════════
@@ -672,6 +731,18 @@
   letter-spacing: 0.05em;
 }
 
+.schlatta_sub {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(123,196,74,0.6);
+  margin-top: 0.35rem;
+  z-index: 2;
+  position: relative;
+}
+
 /* ══════════════════════════════════════════
    15 — 80- & 90-TAL   neon synthwave  (3:1 wide)
 ══════════════════════════════════════════ */
@@ -717,6 +788,158 @@
 }
 
 /* ══════════════════════════════════════════
+   16 — DAMER VS GUBBAR   korall / mörkröd  (2:1 wide)
+══════════════════════════════════════════ */
+.damer { background: #2b0a12; align-items: flex-start; }
+
+.damer_split {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255,90,95,0.16) 50%, transparent 50%);
+  pointer-events: none;
+}
+
+.damer_title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.2rem, 6.5vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #FF5A5F;
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+}
+
+.damer_sub {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,90,95,0.55);
+  margin-top: 0.3rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ══════════════════════════════════════════
+   17 — VEM SA DET?   guld / mörk marinblå  (1:1)
+══════════════════════════════════════════ */
+.citat { background: #0f1b3d; }
+
+.citat_marks {
+  position: absolute;
+  top: -0.5rem;
+  right: 0.3rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(6rem, 16vw, 10rem);
+  font-weight: 900;
+  color: rgba(255,184,0,0.1);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+}
+.citat_marks::before { content: '"'; }
+
+.citat_title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #FFB800;
+  position: relative;
+  z-index: 2;
+}
+
+.citat_sub {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,184,0,0.55);
+  margin-top: 0.3rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ══════════════════════════════════════════
+   18 — DETTA BÖR DU VETA   himmelsblå  (1:1)
+══════════════════════════════════════════ */
+.livs { background: #0EA5E9; }
+
+.livs_dot {
+  position: absolute;
+  top: -15%;
+  right: -15%;
+  width: 60%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  pointer-events: none;
+}
+
+.livs_title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(1.5rem, 4.8vw, 2.6rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  color: #111;
+  position: relative;
+  z-index: 2;
+}
+
+.livs_sub {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(17,17,17,0.55);
+  margin-top: 0.3rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ══════════════════════════════════════════
+   19 — DEJT & DATING   candy pink  (2:1 wide)
+══════════════════════════════════════════ */
+.dejt { background: #FF477E; }
+
+.dejt_hearts {
+  position: absolute;
+  top: -20%;
+  right: -8%;
+  width: 55%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.14);
+  pointer-events: none;
+}
+
+.dejt_title {
+  font-family: 'Anton', sans-serif;
+  font-size: clamp(2.2rem, 6.5vw, 4rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: #fff;
+  position: relative;
+  z-index: 2;
+}
+
+.dejt_sub {
+  font-family: 'Space Grotesk', 'Nunito', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.65);
+  margin-top: 0.3rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ══════════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media (max-width: 700px) {
@@ -731,13 +954,17 @@
       "historia  musik"
       "mat       vetenskap"
       "natur     teknik"
+      "damer     citat"
+      "livs      dejt"
       "retro     retro";
   }
-  .rock, .sport, .teknik, .genz, .schlatta, .disney, .historia, .natur { aspect-ratio: 1; }
+  .rock, .sport, .teknik, .genz, .schlatta, .disney, .historia, .natur, .damer, .dejt { aspect-ratio: 1; }
   .retro { aspect-ratio: 2 / 1; }
   .rock_ghost { font-size: clamp(5rem, 18vw, 10rem); }
   .sport_circle { width: 80%; right: -10%; }
   .genz_title { font-size: clamp(1.3rem, 3.2vw, 2.2rem); line-height: 1.15; }
+  .damer_title { font-size: clamp(1.3rem, 3.2vw, 2.2rem); line-height: 1.15; }
+  .dejt_title { font-size: clamp(1.6rem, 4vw, 2.6rem); line-height: 1.1; }
 }
 
 @media (max-width: 420px) {

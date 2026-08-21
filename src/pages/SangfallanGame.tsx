@@ -145,7 +145,7 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
 
       {/* ── ROUND CARD ── */}
       <div className={styles.roundCard}>
-        <p className={styles.pointValue} style={{ color: meta.textColor }}>{gaveUp ? 0 : pointValue} p</p>
+        <p className={styles.pointValue} style={{ color: meta.textColor }}>{pointValue} p</p>
 
         <div className={styles.boxRow}>
           {words.map((word, i) => {
@@ -180,7 +180,7 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
           <button className={styles.revealBtn}
             style={{ borderColor: meta.textColor, color: meta.textColor }}
             onClick={giveUp}>
-            Ge upp — visa låten
+            Visa rätt låt
           </button>
         )}
 
@@ -190,8 +190,7 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
             {teams.map((t, i) => (
               <button key={i} className={styles.teamBtn}
                 style={{ '--tc': meta.color } as React.CSSProperties}
-                onClick={() => awardPoints(i)}
-                disabled={gaveUp}>
+                onClick={() => awardPoints(i)}>
                 {t.name}
               </button>
             ))}
@@ -211,7 +210,7 @@ export default function SangfallanGame({ pack, category }: { pack: SongPack; cat
             <ol className={styles.helpList}>
               <li>En rad ur en låt döljs bakom rutor, ett ord i taget — sjung eller säg vilken låt det är!</li>
               <li>Klicka på en ruta för att avslöja ordet plus en klurig ledtråd om låten — men färre öppnade rutor ger fler poäng.</li>
-              <li>Klicka på en redan öppnad ruta igen för att ge upp och visa rätt låt direkt.</li>
+              <li>Ett lag kan gissa när som helst — klicka "Visa rätt låt" för att kolla om de hade rätt innan ni delar ut poängen.</li>
               <li>Gissa vilken låt det är — välj vilket lag som gissade rätt, eller "Ingen fick det".</li>
               <li>Är det ett lags tur får inget annat lag svara, även om de vet svaret — vänta på er tur!</li>
             </ol>
