@@ -104,7 +104,7 @@ export default function Home() {
         <Link to="/quiz/schlatta" className={`${s.cell} ${s.schlatta}`}>
           <div className={s.schlatta_bg} />
           <h2 className={s.schlatta_title}>SCHL-<br />ÄTTA</h2>
-          <p className={s.schlatta_sub}>landet · Skövde · lokalkoll</p>
+          <p className={s.schlatta_sub}>landet · slätten · lokalkoll</p>
         </Link>
 
         {/* ── 16 DAMER VS GUBBAR ────────── 2×1 korall */}
